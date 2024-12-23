@@ -97,16 +97,4 @@ header {
     margin-bottom: 20px;
 }
 
-/* Riduci la dimensione del testo dell'intestazione */
-header h1 {
-    font-size: 0.8rem; /* Dimensione più piccola per il testo */
-    color: white; /* Colore del testo bianco */
-    margin: 0;
-}
-
-/* Titolo del progetto */
-h1 {
-    font-size: 2.5rem; /* Dimensione maggiore per il titolo principale */
-    margin-bottom: 20px;
-}
 
