@@ -34,8 +34,16 @@
         </p>
         <p>
             Lo spazio su cui generalmente si studiano le trasformate di Fourier è infatti un altro: lo spazio di Schwartz, definito come \(S(\mathbb R)= \{f \in \mathcal C^{\infty} (\mathbb R) : \sup_x |x^af^{b}(x)|<+\infty \ \forall a,b\}\). 
-            Si può infatti dimostrare che è ben definito \(\mathcal F:S(\mathbb R) \to S(\mathbb R)\)
+            Si può infatti dimostrare che è ben definito \(\mathcal F:S(\mathbb R) \to S(\mathbb R)\). In questo spazio valgono infatti le seguenti proprietà, fondamentali nelle applicazioni della trasformata di Fourier:
         </p>
+        <p>
+            Detta \(F\) la trasformata di Fourier di \(f\) si ha 
+        </p>
+        <ol>
+            <li>\(\mathcal F(f^\prime)(t)=itF(t)\)</li>
+            <li>\(F^\prime(t)=\mathcal F (-itf)(t)\)</li>
+            <li>\[f(x)=\frac{1}{2\pi}\int_{\mathbb R} F(t)e^{ixt}dt\]</li>
+        </ol>
         <a href="index.html" class="back-button">Torna alla Home</a>
     </div>
 </body>
