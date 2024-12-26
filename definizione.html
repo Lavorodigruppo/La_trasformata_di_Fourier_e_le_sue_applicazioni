@@ -1,50 +1,57 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Definizone trasformata di Fourier</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Formule con Elenco Numerato</title>
     <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9a65a;
+            color: white;
+            padding: 20px;
+        }
+        ol {
+            counter-reset: list-counter; /* Resetta il contatore */
+            list-style: none; /* Nasconde i numeri predefiniti */
+            padding-left: 0;
+        }
+        ol li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        ol li::before {
+            content: counter(list-counter) ". "; /* Aggiunge i numeri personalizzati */
+            counter-increment: list-counter;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .formula {
+            font-size: 1.2em;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Progetto realizzato da Youness Faidari, Marta Manno e Emanuele Trucchi</h1>
-    </header>
-    <h1>La trasformata di Fourier</h1>
-    <div class="content">
-        <h1>Definizione trasformata di Fourier</h1>
-        <p>
-           Definiamo la trasformata di Fourier: data una funzione \(f \in L^1(\mathbb{R})\) la sua trasformata di Fourier è la funzione 
-        </p>
-        <p>
-            \[F(t)=\int_{\mathbb{R}}f(x)e^{-i x t}dx\]
-        </p>
-        <p>
-            Notiamo innanzitutto che \(F(t)\) è ben definita per ogni \(t\in \mathbb {R}\), infatti vale 
-            \[ \int_{\mathbb R} f(x)e^{-i x t}dx \le \int_{\mathbb R} |f(x)e^{-i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
-            Inoltre poiché la funzione integranda \(f(x)e^{-i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x)|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
-                da parametro si ha che \(F\) è continua.
-        </p>
-        <p>
-            In generale si definisce trasformata di Fourier anche l'operatore \(\mathcal F\) che a ogni funzione \(f\in L^1(\mathbb R)\) associa la sua trasformata di Fourier. 
-            Non è detto che la trasformata di una funzione in \(L^1(\mathbb R)\) sia ancora una funzione in \(L^1(\mathbb R)\), ad esempio se \(f(x)=1 \chi_{[-1/2,1/2]}\) la sua trasformata di Fourier è \(\frac{2\sin(t/2)}{t}\) che non è assolutamente integrabile.
-        </p>
-        <p>
-            Lo spazio su cui generalmente si studiano le trasformate di Fourier è infatti un altro: lo spazio di Schwartz, definito come \(S(\mathbb R)= \{f \in \mathcal C^{\infty} (\mathbb R) : \sup_x |x^af^{b}(x)|<+\infty \ \forall a,b\}\). 
-            Si può infatti dimostrare che è ben definito \(\mathcal F:S(\mathbb R) \to S(\mathbb R)\). In questo spazio valgono infatti le seguenti proprietà, fondamentali nelle applicazioni della trasformata di Fourier:
-        </p>
-        <p>
-            Detta \(F\) la trasformata di Fourier di \(f\) valgono:
-        </p>
-        <ol>
-            <li>\(\mathcal F(f^\prime)(t)=itF(t)\)</li>
-            <li>\(F^\prime(t)=\mathcal F (-itf)(t)\)</li>
-            <li>\[f(x)=\frac{1}{2\pi}\int_{\mathbb R} F(t)e^{ixt}dt \text{   detta "formula d'inversione".} \]</li>
-        </ol>
-        <a href="index.html" class="back-button">Torna alla Home</a>
-    </div>
+    <h1>Elenco Numerato con Formule</h1>
+
+    <p>Detta \( \mathcal{F} \) la trasformata di Fourier di \( f \), valgono:</p>
+
+    <ol>
+        <li>
+            <span class="formula">\( \mathcal{F}(f')(t) = it\mathcal{F}(t) \)</span>
+        </li>
+        <li>
+            <span class="formula">\( \mathcal{F}'(t) = \mathcal{F}(-itf)(t) \)</span>
+        </li>
+        <li>
+            <span class="formula">\( f(x) = \frac{1}{2\pi} \int_{\mathbb{R}} \mathcal{F}(t)e^{ixt} \, dt \)</span>
+        </li>
+    </ol>
+
+    <p>Detta "formula d'inversione"</p>
 </body>
 </html>
