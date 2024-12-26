@@ -20,13 +20,17 @@
            Definiamo la trasformata di Fourier: data una funzione \(f \in L^1(\mathbb{R})\) la sua trasformata di Fourier è la funzione 
         </p>
         <p>
-            \[F(t)=\int_{\mathbb{R}}f(x)e^{-2\pi i x t}dx\]
+            \[F(t)=\int_{\mathbb{R}}f(x)e^{-i x t}dx\]
         </p>
         <p>
             Notiamo innanzitutto che \(F(t)\) è ben definita per ogni \(t\in \mathbb {R}\), infatti vale 
-            \[ \int_{\mathbb R} f(x)e^{-2\pi i x t}dx \le \int_{\mathbb R} |f(x)e^{-2\pi i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
-            Inoltre poiché la funzione integranda \(f(x)e^{-2\pi i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
+            \[ \int_{\mathbb R} f(x)e^{-i x t}dx \le \int_{\mathbb R} |f(x)e^{-i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
+            Inoltre poiché la funzione integranda \(f(x)e^{-i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x)|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
                 da parametro si ha che \(F\) è continua.
+        </p>
+        <p>
+            In generale si definisce trasformata di Fourier anche l'operatore \(\mathcal F\) che a ogni funzione \(f\in \L^1(\mathbb R)\) associa la sua trasformata di Fourier. 
+            Non è detto che la trasformata di una funzione in \(L^1(\mathbb R)\) sia ancora una funzione in \(L^1(\mathbb R)\), ad esempio se \(f(x)=1 \chi_{[-1/2,1/2]}\) la sua trasformata di Fourier è \(2\sin(t/2)/t\) che non è assolutamente integrabile.
         </p>
         <a href="index.html" class="back-button">Torna alla Home</a>
     </div>
