@@ -17,13 +17,16 @@
     <div class="content">
         <h1>Definizione trasformata di Fourier</h1>
         <p>
-           Di seguito la definizione della trasformata di Fourier: data una funzione \(f \in L^1(\mathbb{R})\) la sua trasformata di Fourier è la funzione 
+           Definiamo la trasformata di Fourier: data una funzione \(f \in L^1(\mathbb{R})\) la sua trasformata di Fourier è la funzione 
         </p>
         <p>
             \[F(t)=\int_{\mathbb{R}}f(x)e^{-2\pi i x t}dx\]
         </p>
         <p>
-            Notiamo innanzitutto che \(F(t)\) è ben definita per ogni \(t\in \mathbb {R}\) infatti vale \[ \int_{\mathbb R} f(x)e^{-2\pi i x t}dx \le \int_{\mathbb R} |f(x)e^{-2\pi i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
+            Notiamo innanzitutto che \(F(t)\) è ben definita per ogni \(t\in \mathbb {R}\), infatti vale 
+            \[ \int_{\mathbb R} f(x)e^{-2\pi i x t}dx \le \int_{\mathbb R} |f(x)e^{-2\pi i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
+            Inoltre poiché la funzione integranda \(f(x)e^{-2\pi i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
+                da parametro si ha che \(F\) è continua.
         </p>
         <a href="index.html" class="back-button">Torna alla Home</a>
     </div>
