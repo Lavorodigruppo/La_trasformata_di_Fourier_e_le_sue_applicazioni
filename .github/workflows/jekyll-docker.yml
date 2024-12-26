@@ -1,6 +1,4 @@
 name: Jekyll site CI
-concurrency: group: "pages" 
-cancel-in-progress: false
 on:
   push:
     branches: [ "main" ]
