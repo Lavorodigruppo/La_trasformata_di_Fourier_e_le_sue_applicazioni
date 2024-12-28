@@ -5,6 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La trasformata di Fourier</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header h1 {
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .box {
+            text-decoration: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #ff7f50, #ffa07a);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -15,7 +60,6 @@
         <a href="definizione.html" class="box">Definizione trasformata di Fourier</a>
         <a href="fourier.html" class="box">Applicazione trasformata di Fourier</a>
         <a href="quiz.html" class="box">Quiz e Minigiochi</a>
-        
     </div>
 </body>
 </html>
