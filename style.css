@@ -1,9 +1,9 @@
-/* Corpo della pagina */
+/* Corpo della pagina 
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #FFBC80, #FF9E4D); /* Arancione chiaro */
+    background: linear-gradient(to bottom, #FFBC80, #FF9E4D); /* Arancione chiaro 
     color: white;
     display: flex;
     justify-content: center;
@@ -12,26 +12,26 @@ body {
     flex-direction: column;
 }
 
-/* Intestazione principale */
+/* Intestazione principale 
 header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Riduci la dimensione del testo dell'intestazione */
+/* Riduci la dimensione del testo dell'intestazione 
 /*header h1 {
     font-size: 0.8rem; /* Dimensione più piccola per il testo 
     color: white; /* Colore del testo bianco 
     margin: 0;
-} */
+} 
 
-/* Titolo del progetto */
+/* Titolo del progetto 
 h1 {
-    font-size: 2.5rem; /* Dimensione maggiore per il titolo principale */
+    font-size: 2.5rem; /* Dimensione maggiore per il titolo principale 
     margin-bottom: 20px;
 }
 
-/* Contenitore dei box */
+/* Contenitore dei box 
 .container {
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ h1 {
     gap: 20px;
 }
 
-/* Box interattivi */
+/* Box interattivi 
 .box {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 20px 40px;
@@ -58,13 +58,13 @@ h1 {
     transform: scale(1.05);
 }
 
-/* Contenuto delle pagine */
+/* Contenuto delle pagine 
 .content {
     max-width: 800px;
     text-align: center;
 }
 
-/* Pulsante di ritorno alla home */
+/* Pulsante di ritorno alla home 
 .back-button {
     display: inline-block;
     margin-top: 20px;
@@ -79,4 +79,4 @@ h1 {
 .back-button:hover {
     background-color: rgba(255, 255, 255, 0.4);
 }
-
+*/
