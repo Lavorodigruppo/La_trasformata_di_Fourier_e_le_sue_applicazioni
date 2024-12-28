@@ -19,11 +19,11 @@ header {
 }
 
 /* Riduci la dimensione del testo dell'intestazione */
-header h1 {
-    font-size: 0.8rem; /* Dimensione più piccola per il testo */
-    color: white; /* Colore del testo bianco */
+/*header h1 {
+    font-size: 0.8rem; /* Dimensione più piccola per il testo 
+    color: white; /* Colore del testo bianco 
     margin: 0;
-}
+} */
 
 /* Titolo del progetto */
 h1 {
