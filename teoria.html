@@ -3,8 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applicazioni della trasformata di Fourier</title>
+    <title>Trasformata di Fourier</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 0 20px;
+        }
+        header h1 {
+            font-size: 0.9em; /* Dimensione molto più piccola */
+            text-align: center;
+            font-weight: normal; /* Per un aspetto più sottile */
+            margin-bottom: 20px;
+            color: #555; /* Colore più tenue */
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        h1.subheading {
+            font-size: 1.5em; /* Riduce la dimensione del sottotitolo */
+        }
+        .content {
+            max-width: 800px;
+            text-align: center;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #ff7f50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .back-button:hover {
+            background: #0056b3;
+        }
+    </style>
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
@@ -13,38 +68,40 @@
     <header>
         <h1>Progetto realizzato da Youness Faidari, Marta Manno e Emanuele Trucchi</h1>
     </header>
-    <h1>La trasformata di Fourier</h1>
-    <div class="content">
-        <h1>Applicazioni della trasformata di Fourier</h1> /* Testo da modificare */
-        <p>
-           Definiamo la trasformata di Fourier: data una funzione \(f \in L^1(\mathbb{R})\) la sua trasformata di Fourier è la funzione 
-        </p>
-        <p>
-            \[F(t)=\int_{\mathbb{R}}f(x)e^{-i x t}dx\]
-        </p>
-        <p>
-            Notiamo innanzitutto che \(F(t)\) è ben definita per ogni \(t\in \mathbb {R}\), infatti vale 
-            \[ \int_{\mathbb R} f(x)e^{-i x t}dx \le \int_{\mathbb R} |f(x)e^{-i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
-            Inoltre poiché la funzione integranda \(f(x)e^{-i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x)|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
+    <main>
+        <h1>La trasformata di Fourier</h1>
+        <div class="content">
+            <h2 class="subheading">Definizione trasformata di Fourier</h2>
+            <p>
+                Definiamo la trasformata di Fourier: data una funzione \(f \in L^1(\mathbb{R})\) la sua trasformata di Fourier è la funzione 
+            </p>
+            <p>
+                \[F(t)=\int_{\mathbb{R}}f(x)e^{-i x t}dx\]
+            </p>
+            <p>
+                Notiamo innanzitutto che \(F(t)\) è ben definita per ogni \(t\in \mathbb {R}\), infatti vale 
+                \[ \int_{\mathbb R} f(x)e^{-i x t}dx \le \int_{\mathbb R} |f(x)e^{-i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
+                Inoltre poiché la funzione integranda \(f(x)e^{-i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x)|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
                 da parametro si ha che \(F\) è continua.
-        </p>
-        <p>
-            In generale si definisce trasformata di Fourier anche l'operatore \(\mathcal F\) che a ogni funzione \(f\in L^1(\mathbb R)\) associa la sua trasformata di Fourier. 
-            Non è detto che la trasformata di una funzione in \(L^1(\mathbb R)\) sia ancora una funzione in \(L^1(\mathbb R)\), ad esempio se \(f(x)=1 \chi_{[-1/2,1/2]}\) la sua trasformata di Fourier è \(\frac{2\sin(t/2)}{t}\) che non è assolutamente integrabile.
-        </p>
-        <p>
-            Lo spazio su cui generalmente si studiano le trasformate di Fourier è infatti un altro: lo spazio di Schwartz, definito come \(S(\mathbb R)= \{f \in \mathcal C^{\infty} (\mathbb R) : \sup_x |x^af^{b}(x)|<+\infty \ \forall a,b\}\). 
-            Si può infatti dimostrare che è ben definito \(\mathcal F:S(\mathbb R) \to S(\mathbb R)\). In questo spazio valgono infatti le seguenti proprietà, fondamentali nelle applicazioni della trasformata di Fourier:
-        </p>
-        <p>
-            Detta \(F\) la trasformata di Fourier di \(f\) valgono:
-        </p>
-        <ol>
-            <li>\(\mathcal F(f^\prime)(t)=itF(t)\)</li>
-            <li>\(F^\prime(t)=\mathcal F (-itf)(t)\)</li>
-            <li>\[f(x)=\frac{1}{2\pi}\int_{\mathbb R} F(t)e^{ixt}dt \text{   detta "formula d'inversione".} \]</li>
-        </ol>
-        <a href="index.html" class="back-button">Torna alla Home</a>
-    </div>
+            </p>
+            <p>
+                In generale si definisce trasformata di Fourier anche l'operatore \(\mathcal F\) che a ogni funzione \(f\in L^1(\mathbb R)\) associa la sua trasformata di Fourier. 
+                Non è detto che la trasformata di una funzione in \(L^1(\mathbb R)\) sia ancora una funzione in \(L^1(\mathbb R)\), ad esempio se \(f(x)=1 \chi_{[-1/2,1/2]}\) la sua trasformata di Fourier è \(\frac{2\sin(t/2)}{t}\) che non è assolutamente integrabile.
+            </p>
+            <p>
+                Lo spazio su cui generalmente si studiano le trasformate di Fourier è infatti un altro: lo spazio di Schwartz, definito come \(S(\mathbb R)= \{f \in \mathcal C^{\infty} (\mathbb R) : \sup_x |x^af^{b}(x)|<+\infty \ \forall a,b\}\). 
+                Si può infatti dimostrare che è ben definito \(\mathcal F:S(\mathbb R) \to S(\mathbb R)\). In questo spazio valgono infatti le seguenti proprietà, fondamentali nelle applicazioni della trasformata di Fourier:
+            </p>
+            <p>
+                Detta \(F\) la trasformata di Fourier di \(f\) valgono:
+            </p>
+            <ol>
+                <li>\(\mathcal F(f^\prime)(t)=itF(t)\)</li>
+                <li>\(F^\prime(t)=\mathcal F (-itf)(t)\)</li>
+                <li>\[f(x)=\frac{1}{2\pi}\int_{\mathbb R} F(t)e^{ixt}dt \text{   detta "formula d'inversione".} \]</li>
+            </ol>
+            <a href="index.html" class="back-button">Torna alla Home</a>
+        </div>
+    </main>
 </body>
 </html>
