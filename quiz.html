@@ -5,19 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cruciverba di Analisi 3</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 0 20px;
+        }
+        header h1 {
+            font-size: 0.9em; /* Dimensione più piccola */
+            text-align: center;
+            font-weight: normal; /* Per un aspetto più sottile */
+            margin-bottom: 20px;
+            color: #555; /* Colore più tenue */
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        .content {
+            max-width: 800px;
+            text-align: center;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 800px;
+        }
+        .lists-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+        .list {
+            margin-bottom: 20px;
+        }
+        .list ul {
+            padding-left: 20px;
+            text-align: left;
+        }
+        .download-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .download-button {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #ff7f50;
+            color: white;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .back-button:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Progetto realizzato da Youness Faidari, Marta Manno e Emanuele Trucchi</h1>
     </header>
     
-
     <div class="content">
         <h2>Cruciverba di Analisi 3</h2>
         
         <!-- Immagine del cruciverba -->
         <div class="image-container">
-            <img src="cruciverba.jpg" alt="Cruciverba di Analisi 3" style="width: 100%; max-width: 800px;">
+            <img src="cruciverba.jpg" alt="Cruciverba di Analisi 3">
         </div>
 
         <!-- Liste orizzontale e verticale -->
@@ -25,13 +95,13 @@
             <div class="list">
                 <h3>ORIZZONTALE</h3>
                 <ul>
-                    2. Struttura algebrica usata per definire collezioni di insiemi misurabili.</li>
-                    4. Teorema che permette di calcolare integrali doppi scambiando l’ordine di integrazione.</li>
-                    7. Valore assoluto di un numero complesso, rappresenta la sua distanza dall’origine.</li>
-                    8. Matematico che ha introdotto un approccio iniziale alla misura.</li>
-                    9. Quantità associata a una singolarità isolata, fondamentale per il calcolo dei contorni.</li>
-                    13. Angolo che un numero complesso forma con l’asse reale positivo.</li>
-                    14. Matematico famoso per la formula che collega esponenziale, seno e coseno in campo complesso.</li>
+                    <li>2. Struttura algebrica usata per definire collezioni di insiemi misurabili.</li>
+                    <li>4. Teorema che permette di calcolare integrali doppi scambiando l’ordine di integrazione.</li>
+                    <li>7. Valore assoluto di un numero complesso, rappresenta la sua distanza dall’origine.</li>
+                    <li>8. Matematico che ha introdotto un approccio iniziale alla misura.</li>
+                    <li>9. Quantità associata a una singolarità isolata, fondamentale per il calcolo dei contorni.</li>
+                    <li>13. Angolo che un numero complesso forma con l’asse reale positivo.</li>
+                    <li>14. Matematico famoso per la formula che collega esponenziale, seno e coseno in campo complesso.</li>
                     <li>15. Insieme appartenente alla sigma-algebra generata dagli aperti di uno spazio topologico.</li>
                     <li>17. Metodo primitivo per definire la misura, poi generalizzato da Lebesgue.</li>
                     <li>19. Misura che quantifica la possibilità che un evento accada.</li>
@@ -68,13 +138,12 @@
             </div>
         </div>
 
-        
         <div class="download-container">
             <p>Scarica il file con la soluzione del cruciverba:</p>
             <a href="soluzione_cruciverba.pdf" class="download-button">Scarica Soluzione</a>
         </div>
-    <div class="content">
         <a href="index.html" class="back-button">Torna alla Home</a>
     </div>
 </body>
 </html>
+
