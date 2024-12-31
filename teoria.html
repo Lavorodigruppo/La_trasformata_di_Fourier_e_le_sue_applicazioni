@@ -74,33 +74,14 @@
             <h2 class="subheading">L'equazione di diffusione</h2>
             /* Testo di modificare */
             <p>
-                Definiamo la trasformata di Fourier: data una funzione \(f \in L^1(\mathbb{R})\) la sua trasformata di Fourier è la funzione 
+                Mostriamo un esempio di applicazione teorica della trasformata di Fourier nell'ambito della risoluzione di equazioni differenziali.
+                Tratteremo l'equazione di diffusione, che modella appunto fenomeni di diffusione in un mezzo unidimensionale (ad esempio la diffusione del calore in una sbarra metallica, come studiato dallo stesso Fourier). 
             </p>
             <p>
-                \[F(t)=\int_{\mathbb{R}}f(x)e^{-i x t}dx\]
+                Si ha infatti una funzione incognita \(u(x,t):\mathbb R \times [0,+\infty) \to [0,+\infty)\) in cui la componente \(x\) rappresenta la coordinata spaziale sulla sbarra metallica 
+                (identificata con \(\mathbb R\) per comodità) e la componente \(t\) rappresenta il tempo, così che \(u(x,t)\) sia la quantità di calore nel punto di ascissa \(x\) al tempo \(t\).
             </p>
-            <p>
-                Notiamo innanzitutto che \(F(t)\) è ben definita per ogni \(t\in \mathbb {R}\), infatti vale 
-                \[ \int_{\mathbb R} f(x)e^{-i x t}dx \le \int_{\mathbb R} |f(x)e^{-i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
-                Inoltre poiché la funzione integranda \(f(x)e^{-i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x)|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
-                da parametro si ha che \(F\) è continua.
-            </p>
-            <p>
-                In generale si definisce trasformata di Fourier anche l'operatore \(\mathcal F\) che a ogni funzione \(f\in L^1(\mathbb R)\) associa la sua trasformata di Fourier. 
-                Non è detto che la trasformata di una funzione in \(L^1(\mathbb R)\) sia ancora una funzione in \(L^1(\mathbb R)\), ad esempio se \(f(x)=1 \chi_{[-1/2,1/2]}\) la sua trasformata di Fourier è \(\frac{2\sin(t/2)}{t}\) che non è assolutamente integrabile.
-            </p>
-            <p>
-                Lo spazio su cui generalmente si studiano le trasformate di Fourier è infatti un altro: lo spazio di Schwartz, definito come \(S(\mathbb R)= \{f \in \mathcal C^{\infty} (\mathbb R) : \sup_x |x^af^{b}(x)|<+\infty \ \forall a,b\}\). 
-                Si può infatti dimostrare che è ben definito \(\mathcal F:S(\mathbb R) \to S(\mathbb R)\). In questo spazio valgono infatti le seguenti proprietà, fondamentali nelle applicazioni della trasformata di Fourier:
-            </p>
-            <p>
-                Detta \(F\) la trasformata di Fourier di \(f\) valgono:
-            </p>
-            <ol>
-                <li>\(\mathcal F(f^\prime)(t)=itF(t)\)</li>
-                <li>\(F^\prime(t)=\mathcal F (-itf)(t)\)</li>
-                <li>\[f(x)=\frac{1}{2\pi}\int_{\mathbb R} F(t)e^{ixt}dt \text{   detta "formula d'inversione".} \]</li>
-            </ol>
+            
             <a href="index.html" class="back-button">Torna alla Home</a>
         </div>
     </main>
