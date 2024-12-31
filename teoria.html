@@ -74,7 +74,7 @@
             <h2 class="subheading">L'equazione di diffusione</h2>
             
             <p>
-                Mostriamo un esempio di applicazione teorica della trasformata di Fourier nell'ambito della risoluzione di equazioni differenziali.
+                Mostriamo un esempio di applicazione teorica della trasformata di Fourier nell'ambito della risoluzione di equazioni differenziali alle derivate parziali.
                 Tratteremo l'equazione di diffusione, che modella appunto fenomeni di diffusione in un mezzo unidimensionale (ad esempio la diffusione del calore in una sbarra metallica, come studiato dallo stesso Fourier). 
             </p>
             <p>
@@ -82,8 +82,9 @@
                 (identificata con \(\mathbb R\) per comodità) e la componente \(t\) rappresenta il tempo, così che \(u(x,t)\) sia la quantità di calore nel punto di ascissa \(x\) al tempo \(t\).
             </p>
             <p>
-                Supponendo la funzione \(u\) derivabile almeno 2 volte nella prima componente e almeno una volta nella seconda, si ricava che l'equazione di diffusione è \(u_t=\alpha^2u_{xx}\). 
-                Inoltre si conosce il valore di \(u(x,0)\) per ogni \(x \in \mathbb R\), cioè la distribuzione iniziale di calore, che si assume integrabile e di classe \(\mathcal C^{\infty}\).
+                Supponendo la funzione \(u\) integrabile e derivabile almeno 2 volte nella prima componente e almeno una volta nella seconda, si ricava che l'equazione di diffusione è \(u_t=\alpha^2u_{xx}\) dove \(\alpha^2 \in \mathbb R\) è il parametro di diffusione. 
+                Inoltre si conosce il valore di \(u(x,0)\) per ogni \(x \in \mathbb R\), cioè la distribuzione iniziale di calore, che si assume integrabile e di classe \(\mathcal C^{\infty}\). 
+                L'idea per la risoluzione di questa equazione è quella di usare le proprietà della trasformata di Fourier per trasformare l'equazione precedente in un'equazione differenziale ordinaria per poi integrarla e utilizzare la formula di inversione per tornare alla funzione di partenza.
             </p>
             
             <a href="index.html" class="back-button">Torna alla Home</a>
