@@ -25,12 +25,12 @@
         }
     </style>
     <script>
-        function checkAnswer(questionId, correctAnswer) {
-            const answers = document.getElementsByName(questionId);
+        function checkAnswer(numerodomanda, rispostagiusta) {
+            const answers = document.getElementsByName(numerodomanda);
             answers.forEach(answer => {
                 const feedback = document.getElementById(`${answer.id}-feedback`);
                 if (answer.checked) {
-                    if (answer.value === correctAnswer) {
+                    if (answer.value === rispostagiusta) {
                         feedback.textContent = '✔';
                         feedback.className = 'feedback correct';
                     } else {
