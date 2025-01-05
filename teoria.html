@@ -122,7 +122,7 @@
                 Il secondo passo ci dice che \(\hat u(\omega,t)=e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\) ma noi cercavamo \(u(x,t)\). Il modo per passare dalla 
                 trasformata alla funzione di partenza è la trasformata inversa, grazie alla Formula d'inversione. Dunque applicando la trasformata inversa a entrambi i membri si ottiene \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))\) 
                 e per il calcolo del secondo membro si utilizzano le proprietà che legano la trasformata di Fourier e il prodotto di convoluzione: l'antitrasformata del prodotto di due funzioni è il prodotto di convoluzione delle antitrasformate delle due funzioni,
-                di conseguenza la soluzione all'equazione di diffusione sarà \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0)=G(x,t) * u(x,0)\) dove \( G(x,t)=\frac {1}{2\alpha \sqrt{\omega t}}e^{-\frac{x^2}{4t\alpha^2}} \) è ancora una funzione gaussiana, detta nucleo del calore, in quanto antitrasformata di una gaussiana.
+                di conseguenza la soluzione all'equazione di diffusione sarà \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0)=G(x,t) * u(x,0)\) dove \( G(x,t)=\frac {1}{2\alpha \sqrt{\pi t}}e^{-\frac{x^2}{4t\alpha^2}} \) è ancora una funzione gaussiana, detta nucleo del calore, in quanto antitrasformata di una gaussiana.
             </p>
             <p>
                 Da questo deduciamo il comportamento della funzione \(u(x,t)\) al crescere del tempo: la funzione \(G\) è concentrata nell'origine per tempi vicini a 0 e per tempi maggiori si appiattisce sempre di più, cioè aumenta l'ampiezza e diminuisce il valore della funzione in 0. 
