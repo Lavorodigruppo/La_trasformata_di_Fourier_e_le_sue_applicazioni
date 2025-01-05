@@ -70,37 +70,55 @@
     </header>
     <main>
         <h1>La trasformata di Fourier</h1>
-        <div class="content">
+             <div class="content">
             <h2 class="subheading">L'analisi dei segnali</h2>
-            /* Testo da modificare */
+            
             <p>
-                Definiamo la trasformata di Fourier: data una funzione \(f \in L^1(\mathbb{R})\) la sua trasformata di Fourier è la funzione 
+                La serie e la trasformata di Fourier sono strumenti matematici estremamente utili nell’analisi e nell’elaborazione dei segnali e forniscono una rappresentazione alternativa al dominio del tempo, detta rappresentazione nel dominio della frequenza. La trasformata di Fourier permette di rappresentare nel dominio della frequenza tutti i segnali di interesse, periodici e aperiodici.
             </p>
             <p>
-                \[F(t)=\int_{\mathbb{R}}f(x)e^{-i x t}dx\]
+                L’analisi in frequenza dei segnali aperiodici tempo continuo è uno dei contributi più importanti sviluppati da Fourier nel suo lavoro originale. Partendo dalla rappresentazione in frequenza di un segnale periodico, un segnale aperiodico può essere visto come un segnale periodico di periodo infinito.
+            </p>
+
+            <h3 class="subheading"> Rappresentazione dei segnali periodici</h3>
+            <p>
+                Un segnale reale periodico di periodo \(T = \frac{1}{f}\) può essere espresso mediante somma di infinite oscillazioni sinusoidali di ampiezza, frequenza e fase opportuna:
+                \[
+                x_p(t) = \sum_{n=-\infty}^{+\infty} X_n e^{i2\pi nf t}
+                \]
+                Questa è la forma complessa dello sviluppo in serie di Fourier. Le informazioni riguardo l’ampiezza e la fase delle sinusoidi sono contenute nei coefficienti complessi \(X_n\), i coefficienti dello sviluppo in serie di Fourier:
+                \[
+                X_n = \frac{1}{T} \int_{-T/2}^{T/2} x(t) e^{-i2\pi nf t} \, dt
+                \]
+            </p>
+
+            <h3 class="subheading"> Rappresentazione dei segnali aperiodici</h3>
+            <p>
+                Facendo tendere all’infinito il periodo \(T\), le componenti armoniche che costituiscono il segnale periodico tendono ad avvicinarsi in frequenza e la periodicità si perde, passando dallo sviluppo in serie a quello mediante integrale:
+                \[
+                X(f) = \int_{-\infty}^{+\infty} x(t) e^{-i2\pi f t} \, dt
+                \]
+                Questa è l'equazione di analisi (trasformata di Fourier) che fornisce le informazioni sull’ampiezza e sulla fase del segnale.
             </p>
             <p>
-                Notiamo innanzitutto che \(F(t)\) è ben definita per ogni \(t\in \mathbb {R}\), infatti vale 
-                \[ \int_{\mathbb R} f(x)e^{-i x t}dx \le \int_{\mathbb R} |f(x)e^{-i x t}|dx = \int_{\mathbb R} |f(x)|dx < \infty\]
-                Inoltre poiché la funzione integranda \(f(x)e^{-i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x)|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
-                da parametro si ha che \(F\) è continua.
+                L'equazione di sintesi (trasformata inversa di Fourier) permette di determinare il peso che le varie componenti hanno nella ricostruzione del segnale:
+                \[
+                x(t) = \int_{-\infty}^{+\infty} X(f) e^{i2\pi f t} \, df
+                \]
+            </p>
+
+            <h3 class="subheading">Cosa rappresenta la trasformata di Fourier</h3>
+            <p>
+                La trasformata di Fourier consente di scomporre un segnale nelle frequenze che lo costituiscono, in questo modo rappresenta le stesse informazioni della forma d’onda originale, solo nel dominio della frequenza. Qualsiasi forma d’onda complessa può essere espressa univocamente dalla sovrapposizione di onde sinusoidali, le sue componenti di Fourier.
             </p>
             <p>
-                In generale si definisce trasformata di Fourier anche l'operatore \(\mathcal F\) che a ogni funzione \(f\in L^1(\mathbb R)\) associa la sua trasformata di Fourier. 
-                Non è detto che la trasformata di una funzione in \(L^1(\mathbb R)\) sia ancora una funzione in \(L^1(\mathbb R)\), ad esempio se \(f(x)=1 \chi_{[-1/2,1/2]}\) la sua trasformata di Fourier è \(\frac{2\sin(t/2)}{t}\) che non è assolutamente integrabile.
+                Consideriamo la trasformata inversa di Fourier:
+                \[
+                x(t) = \int_{-\infty}^{+\infty} X(f) e^{i2\pi f t} \, df
+                \]
+                dove \(e^{i2\pi f}\) rappresenta il numero di giri fatti sulla circonferenza unitaria, ovvero la frequenza del segnale. Moltiplicandolo per \(X(f)\), che contiene le informazioni sull’ampiezza e la fase del segnale, si amplifica e si sposta il segnale periodico che deriva da \(e^{i2\pi f}\). Facendo questo lavoro su tutte le frequenze da \(-\infty\) a \(+\infty\) e integrando si ottiene il segnale originale.
             </p>
-            <p>
-                Lo spazio su cui generalmente si studiano le trasformate di Fourier è infatti un altro: lo spazio di Schwartz, definito come \(S(\mathbb R)= \{f \in \mathcal C^{\infty} (\mathbb R) : \sup_x |x^af^{b}(x)|<+\infty \ \forall a,b\}\). 
-                Si può infatti dimostrare che è ben definito \(\mathcal F:S(\mathbb R) \to S(\mathbb R)\). In questo spazio valgono infatti le seguenti proprietà, fondamentali nelle applicazioni della trasformata di Fourier:
-            </p>
-            <p>
-                Detta \(F\) la trasformata di Fourier di \(f\) valgono:
-            </p>
-            <ol>
-                <li>\(\mathcal F(f^\prime)(t)=itF(t)\)</li>
-                <li>\(F^\prime(t)=\mathcal F (-itf)(t)\)</li>
-                <li>\[f(x)=\frac{1}{2\pi}\int_{\mathbb R} F(t)e^{ixt}dt \text{   detta "formula d'inversione".} \]</li>
-            </ol>
+
             <a href="index.html" class="back-button">Torna alla Home</a>
         </div>
     </main>
