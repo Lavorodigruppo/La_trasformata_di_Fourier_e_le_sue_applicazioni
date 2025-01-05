@@ -107,6 +107,7 @@
                 Al primo membro si ha invece \[\mathcal F (u_t)= \int _{\mathbb R} \frac{\partial u}{\partial t} (x,t) e^{-ix \omega } dx =\frac{\partial }{\partial t} \int_{\mathbb R} u(x,t) e^{-ix \omega } dx =\frac{\partial \hat u}{\partial t} (\omega, t)\] 
                 infatti dato che la funzione \(u\) è integrabile e maggiora in modulo la funzione integranda, si può passare la derivata fuori dall'integrale
             </p>
+            <h3 class="subheading"> 2° passo: si risolve l'equazione differenziale ordinaria</h3>
             <p>
                 2° passo: Si risolve l'equazione differenziale ordinaria. Applicando il passo precedente siamo arrivati all'uguaglianza \[\frac{\partial \hat u}{\partial t} (\omega, t)=-\alpha^2 \omega^2 \hat u (\omega, t) \]
                 che può essere interpretata come un'equazione differenziale ordinaria. Fissando \(\omega \in \mathbb R\) consideriamo la funzione \(y(t)=\hat u (\omega, t) \), l'uguaglianza sopra si può riscrivere come 
@@ -116,6 +117,7 @@
                 y(0)=\hat u (\omega, 0) \end{cases}\]
                 che si risolve con metodi elementari di separazione delle variabili e la soluzione è \(y(t)=e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\)
             </p>
+            <h3 class="subheading"> 3° passo: si torna alla funzione di partenza con la formula di inversione</h3>
             <p>
                 3° passo: Tornare alla funzione di partenza. Il secondo passo ci dice che \(\hat u(\omega,t)=e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\) ma noi cercavamo \(u(x,t)\). Il modo per passare dalla 
                 trasformata alla funzione di partenza è la trasformata inversa, grazie alla Formula d'inversione. Dunque applicando la trasformata inversa a entrambi i membri si ottiene \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))\) 
