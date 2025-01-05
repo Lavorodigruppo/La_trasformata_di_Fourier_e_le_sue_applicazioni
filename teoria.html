@@ -126,53 +126,8 @@
                 Facendo quindi il prodotto di convoluzione tra questa funzione e la distribuzione iniziale, quella che all'inizio è una distribuzione irregolare con eventualmente numerosi picchi tende molto rapidamente a diventare uniforme e liscia.
             </p>
             *
-            p>
-        La soluzione dell'equazione di diffusione è descritta dai seguenti passaggi:
-    </p>
-    <div class="formula">
-        \( \hat{u}(\omega, t) = \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} \)
-    </div>
-    <p>
-        Applicando la trasformata inversa di Fourier, otteniamo:
-    </p>
-    <div class="formula">
-        \( u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, t) e^{i\omega x} \, d\omega \)
-    </div>
-    <p>
-        Sostituendo \(\hat{u}(\omega, t)\):
-    </p>
-    <div class="formula">
-        \( u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} e^{i\omega x} \, d\omega \)
-    </div>
-    <p>
-        Poiché \(\hat{u}(\omega, 0) = \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} \, d\xi\), sostituendo otteniamo:
-    </p>
-    <div class="formula">
-        \( u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} \, d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} \, d\omega \)
-    </div>
-    <p>
-        Cambiando l'ordine degli integrali:
-    </p>
-    <div class="formula">
-        \( u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty u_0(\xi) \left( \int_{-\infty}^\infty e^{-\alpha^2 \omega^2 t} e^{i\omega (x - \xi)} \, d\omega \right) d\xi \)
-    </div>
-    <p>
-        L'integrale interno rappresenta la trasformata inversa di una gaussiana:
-    </p>
-    <div class="formula">
-        \( G(x - \xi, t) = \frac{1}{\sqrt{4\pi \alpha^2 t}} e^{-\frac{(x - \xi)^2}{4\alpha^2 t}} \)
-    </div>
-    <p>
-        Pertanto, la soluzione esplicita è:
-    </p>
-    <div class="formula">
-        \( u(x, t) = \int_{-\infty}^\infty G(x - \xi, t) u_0(\xi) \, d\xi \)
-    </div>
-    <p>
-        Sostituendo \(G(x - \xi, t)\):
-    </p>
-    <div class="formula">
-        \( u(x, t) = \int_{-\infty}^\infty \frac{1}{\sqrt{4\pi \alpha^2 t}} e^{-\frac{(x - \xi)^2}{4\alpha^2 t}} u_0(\xi) \, d\xi \)
+            <div class="formula">
+        \( \hat{u}(\omega, t) = \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} \rightarrow u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, t) e^{i\omega x} d\omega \rightarrow u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega \rightarrow u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega \rightarrow u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty u_0(\xi) \left( \int_{-\infty}^\infty e^{-\alpha^2 \omega^2 t} e^{i\omega (x-\xi)} d\omega \right) d\xi \rightarrow u(x, t) = \int_{-\infty}^\infty G(x-\xi, t) u_0(\xi) d\xi \rightarrow u(x, t) = \int_{-\infty}^\infty \frac{1}{\sqrt{4\pi \alpha^2 t}} e^{-\frac{(x-\xi)^2}{4\alpha^2 t}} u_0(\xi) d\xi \)
     </div>
             <a href="index.html" class="back-button">Torna alla Home</a>
         </div>
