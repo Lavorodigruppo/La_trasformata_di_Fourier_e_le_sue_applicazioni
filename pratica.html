@@ -118,6 +118,19 @@
                 \]
                 dove \(e^{i2\pi f}\) rappresenta il numero di giri fatti sulla circonferenza unitaria, ovvero la frequenza del segnale. Moltiplicandolo per \(X(f)\), che contiene le informazioni sull’ampiezza e la fase del segnale, si amplifica e si sposta il segnale periodico che deriva da \(e^{i2\pi f}\). Facendo questo lavoro su tutte le frequenze da \(-\infty\) a \(+\infty\) e integrando si ottiene il segnale originale.
             </p>
+            <h3 class="subheading">Elaborazione di segnali sonori</h3>
+                 <p>
+                     Nei casi delle oscillazioni di un qualunque sistema meccanico, come l'oscillazione di una corda o di una membrana di uno strumento musicale, 
+                     l'analisi di Fourier viene effettuata facendo interagire l'onda in questione con sistemi fisici che captano il segnale e che sono in grado di attivare meccanismi capaci di selezionare e discriminare le varie componenti armoniche.
+                 </p>
+                 <p>
+                     Lo spettro di un segnale (e quindi la forma stessa del segnale) può essere modificato se sottoposto ad un’operazione di filtraggio. Un filtro è appunto un dispositivo che opera una trasformazione sulla struttura spettrale di un segnale, 
+                     trasmettendone una parte ed eliminandone le parti restanti. In altre parole un filtro ha la proprietà di agire, modificandola, sulla ampiezza delle componenti, lasciando inalterata la loro frequenza.
+                 </p>
+                 <p>
+                     Per la rimozione del rumore, dopo aver scomposto il segnale nelle sue componenti, vengono scartate quelle della frequenza indesiderata e poi viene ricostruita l'onda sonora originale grazie alla trasformata inversa.\\
+Ad esempio per la rimozione di una nota indesiderata, supponendo di avere un suono digitale con un fastidioso tono acuto che vogliamo modificare. La Trasformata di Fourier dell'onda sonora mostrerà un picco acuto corrispondente all'ampiezza delle singole note. Possiamo filtrare la nota indesiderata riducendo questo picco.
+                 </p>
 
             <a href="index.html" class="back-button">Torna alla Home</a>
         </div>
