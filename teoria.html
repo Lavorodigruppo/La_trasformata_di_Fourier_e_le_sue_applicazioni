@@ -102,14 +102,14 @@
             </p>
             <h3 class="subheading"> 1° passo: si applica a entrambi i membri la trasformata di Fourier in \(x\)</h3>
             <p>
-                1° passo: Si applica la trasformata di Fourier nella variabile \(x\) a entrambi i membri dell'equazione: posta \(\hat u (\omega, t)=\mathcal F (u(x,t))\) si ha \[\mathcal F (\alpha^2 u_{xx})=\alpha^2 \mathcal F (u_{xx})=-\alpha^2 \omega^2 \hat u (\omega, t) \]
+                Posta \(\hat u (\omega, t)=\mathcal F (u(x,t))\) si ha \[\mathcal F (\alpha^2 u_{xx})=\alpha^2 \mathcal F (u_{xx})=-\alpha^2 \omega^2 \hat u (\omega, t) \]
                 in cui la prima uguaglianza segue dalla linearità dell'integrale e la seconda dalla formula della trasformata di Fourier della derivata. 
                 Al primo membro si ha invece \[\mathcal F (u_t)= \int _{\mathbb R} \frac{\partial u}{\partial t} (x,t) e^{-ix \omega } dx =\frac{\partial }{\partial t} \int_{\mathbb R} u(x,t) e^{-ix \omega } dx =\frac{\partial \hat u}{\partial t} (\omega, t)\] 
-                infatti dato che la funzione \(u\) è integrabile e maggiora in modulo la funzione integranda, si può passare la derivata fuori dall'integrale
+                infatti dato che la funzione \(u\) è integrabile e maggiora in modulo la funzione integranda, si può passare la derivata fuori dall'integrale.
             </p>
             <h3 class="subheading"> 2° passo: si risolve l'equazione differenziale ordinaria</h3>
             <p>
-                2° passo: Si risolve l'equazione differenziale ordinaria. Applicando il passo precedente siamo arrivati all'uguaglianza \[\frac{\partial \hat u}{\partial t} (\omega, t)=-\alpha^2 \omega^2 \hat u (\omega, t) \]
+                Applicando il passo precedente siamo arrivati all'uguaglianza \[\frac{\partial \hat u}{\partial t} (\omega, t)=-\alpha^2 \omega^2 \hat u (\omega, t) \]
                 che può essere interpretata come un'equazione differenziale ordinaria. Fissando \(\omega \in \mathbb R\) consideriamo la funzione \(y(t)=\hat u (\omega, t) \), l'uguaglianza sopra si può riscrivere come 
                 \(y^\prime (t)=-\alpha^2 \omega^2 y(t)\), inoltre poiché conosciamo \(u(x,0) \) per ogni \(x\) allora conosciamo anche \(\mathcal F (u(x,0)) =\hat u (\omega, 0)=y(0)\) e perciò la nostra equazione di diffusione è diventata il problema di Cauchy
                 \[\begin{cases}
@@ -119,7 +119,7 @@
             </p>
             <h3 class="subheading"> 3° passo: si torna alla funzione di partenza con la formula di inversione</h3>
             <p>
-                3° passo: Tornare alla funzione di partenza. Il secondo passo ci dice che \(\hat u(\omega,t)=e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\) ma noi cercavamo \(u(x,t)\). Il modo per passare dalla 
+                Il secondo passo ci dice che \(\hat u(\omega,t)=e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\) ma noi cercavamo \(u(x,t)\). Il modo per passare dalla 
                 trasformata alla funzione di partenza è la trasformata inversa, grazie alla Formula d'inversione. Dunque applicando la trasformata inversa a entrambi i membri si ottiene \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))\) 
                 e per il calcolo del secondo membro si utilizzano le proprietà che legano la trasformata di Fourier e il prodotto di convoluzione: l'antitrasformata del prodotto di due funzioni è il prodotto di convoluzione delle antitrasformate delle due funzioni,
                 di conseguenza la soluzione all'equazione di diffusione sarà \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0)=G(x,t) * u(x,0)\) dove \( G(x,t)=\frac {1}{2\alpha \sqrt{\omega t}}e^{-\frac{x^2}{4t\alpha^2}} \) è ancora una funzione gaussiana, detta nucleo del calore, in quanto antitrasformata di una gaussiana.
