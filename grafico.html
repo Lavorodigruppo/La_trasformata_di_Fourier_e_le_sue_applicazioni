@@ -9,11 +9,24 @@
 <body>
     <h1>Visualizzazione della Soluzione dell'Equazione di Diffusione</h1>
     <p>
-        Il grafico seguente rappresenta l'evoluzione temporale della funzione \( u(x,t) \) calcolata come convoluzione del nucleo di calore \( G(x,t) \) e una distribuzione iniziale \( u_0(x) \).
+        I grafici seguenti rappresentano l'evoluzione temporale della funzione \( u(x,t) \) calcolata come convoluzione del nucleo di calore \( G(x,t) 
+        e una distribuzione iniziale \( u_0(x) \). È possibile anche modificare la distribuzione iniziale e visualizzare separatamente \( G(x,t) \).
     </p>
-    
+
     <div>
+        <label for="initialFunctionInput">Imposta \( u_0(x) \):</label>
+        <input type="text" id="initialFunctionInput" value="Math.exp(-x * x)" />
+        <button onclick="updateInitialCondition()">Aggiorna</button>
+    </div>
+
+    <div>
+        <h3>Grafico di \( u(x,t) \)</h3>
         <canvas id="heatEquationChart" width="800" height="400"></canvas>
+    </div>
+
+    <div>
+        <h3>Grafico di \( G(x,t) \)</h3>
+        <canvas id="heatKernelChart" width="800" height="400"></canvas>
     </div>
 
     <div>
@@ -28,11 +41,13 @@
     </div>
 
     <script>
-        const ctx = document.getElementById('heatEquationChart').getContext('2d');
-        const initialCondition = (x) => Math.exp(-x * x); // u_0(x)
+        const ctx1 = document.getElementById('heatEquationChart').getContext('2d');
+        const ctx2 = document.getElementById('heatKernelChart').getContext('2d');
+
+        let initialConditionFunc = (x) => Math.exp(-x * x); // Default u_0(x)
         const heatKernel = (x, t) => (1 / Math.sqrt(4 * Math.PI * t)) * Math.exp(-x * x / (4 * t));
 
-        let time = 0.1; // Tempo iniziale
+        let time = 0.1;
         let animationFrame;
         let isAnimating = false;
 
@@ -40,20 +55,30 @@
             const dx = 0.1;
             let integral = 0;
             for (let xi = -10; xi <= 10; xi += dx) {
-                integral += heatKernel(x - xi, t) * initialCondition(xi) * dx;
+                integral += heatKernel(x - xi, t) * initialConditionFunc(xi) * dx;
             }
             return integral;
         };
 
-        const generateData = (t) => {
+        const generateData = (t, func) => {
             const xValues = Array.from({ length: 201 }, (_, i) => -10 + i * 0.1);
-            const uValues = xValues.map(x => computeSolution(x, t));
+            const uValues = xValues.map(x => func(x, t));
             return { xValues, uValues };
         };
 
-        const initialData = generateData(time);
+        const updateInitialCondition = () => {
+            const input = document.getElementById('initialFunctionInput').value;
+            try {
+                initialConditionFunc = new Function('x', `return ${input}`);
+                updateChart(time);
+            } catch (error) {
+                alert('Errore nella funzione iniziale: ' + error.message);
+            }
+        };
 
-        const chart = new Chart(ctx, {
+        const initialData = generateData(time, computeSolution);
+
+        const solutionChart = new Chart(ctx1, {
             type: 'line',
             data: {
                 labels: initialData.xValues,
@@ -85,12 +110,50 @@
             }
         });
 
+        const kernelChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: initialData.xValues,
+                datasets: [{
+                    label: `G(x, t=${time.toFixed(1)})`,
+                    data: initialData.xValues.map(x => heatKernel(x, time)),
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: {
+                            display: true,
+                            text: 'x'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'G(x, t)'
+                        }
+                    }
+                }
+            }
+        });
+
         const updateChart = (t) => {
-            const newData = generateData(t);
-            chart.data.labels = newData.xValues;
-            chart.data.datasets[0].data = newData.uValues;
-            chart.data.datasets[0].label = `u(x, t=${t.toFixed(1)})`;
-            chart.update();
+            const newSolutionData = generateData(t, computeSolution);
+            solutionChart.data.labels = newSolutionData.xValues;
+            solutionChart.data.datasets[0].data = newSolutionData.uValues;
+            solutionChart.data.datasets[0].label = `u(x, t=${t.toFixed(1)})`;
+            solutionChart.update();
+
+            const newKernelData = generateData(t, (x) => heatKernel(x, t));
+            kernelChart.data.labels = newKernelData.xValues;
+            kernelChart.data.datasets[0].data = newKernelData.uValues;
+            kernelChart.data.datasets[0].label = `G(x, t=${t.toFixed(1)})`;
+            kernelChart.update();
         };
 
         const updateTime = (newTime) => {
@@ -100,7 +163,7 @@
         };
 
         const animate = () => {
-            if (time >= 5) time = 0.1; // Riparti da capo
+            if (time >= 5) time = 0.1;
             time += 0.1;
             document.getElementById('timeSlider').value = time;
             document.getElementById('timeValue').textContent = time.toFixed(1);
@@ -122,5 +185,3 @@
     </script>
 </body>
 </html>
-
-
