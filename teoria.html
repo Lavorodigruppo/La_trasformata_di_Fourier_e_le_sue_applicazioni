@@ -199,10 +199,10 @@
              \(u(x,t) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, t) e^{i\omega x} d\omega = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))\)
         </div>
         <div id="popup2" style="display: none;">
-            \(u(x,t) = \mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))  = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0)\)
+            \(u(x,t) = \mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0)\)
         </div>
         <div id="popup3" style="display: none;">
-            <p>\(\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0) = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \) <\p>
+            <p>\(\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0) = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \) </p>
             <p>\(=\frac{1}{2\pi} \int_{-\infty}^\infty u_0(\xi) \left( \int_{-\infty}^\infty e^{-\alpha^2 \omega^2 t} e^{i\omega (x-\xi)} d\omega \right) d\xi = \int_{-\infty}^\infty \frac{1}{\sqrt{4\pi \alpha^2 t}} e^{-\frac{(x-\xi)^2}{4\alpha^2 t}} u_0(\xi) d\xi = \int_{-\infty}^\infty G(x-\xi, t) u_0(\xi) d\xi = G(x,t) * u(x,0)\)</p>
         </div>
     </main>
