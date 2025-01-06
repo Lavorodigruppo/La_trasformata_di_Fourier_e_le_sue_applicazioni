@@ -1,129 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizzazione Nucleo del Calore</title>
+    <title>Visualizzazione Dinamica - Trasformata di Fourier</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h2>Visualizzazione del Nucleo del Calore</h2>
-
-    <!-- Canvas per il grafico -->
-    <canvas id="heatKernelChart" width="800" height="400"></canvas>
-
-    <!-- Slider per il tempo -->
+    <h1>Visualizzazione della Soluzione dell'Equazione di Diffusione</h1>
+    <p>
+        Il grafico seguente rappresenta l'evoluzione temporale della funzione \( u(x,t) \) calcolata come convoluzione del nucleo di calore \( G(x,t) \) e una distribuzione iniziale \( u_0(x) \).
+    </p>
+    
     <div>
-        <label for="timeSlider">Tempo (t): </label>
-        <input type="range" id="timeSlider" min="0.1" max="5" step="0.1" value="1">
-        <span id="timeValue">1</span>
+        <canvas id="heatEquationChart" width="800" height="400"></canvas>
     </div>
 
-    <!-- Script per il grafico e l'interattività -->
+    <div>
+        <label for="timeSlider">Seleziona il tempo \( t \):</label>
+        <input type="range" id="timeSlider" min="0.1" max="5" step="0.1" value="0.1" oninput="updateTime(this.value)">
+        <span id="timeValue">0.1</span>
+    </div>
+
+    <div>
+        <button onclick="startAnimation()">Avvia</button>
+        <button onclick="pauseAnimation()">Pausa</button>
+    </div>
+
     <script>
-        const alpha = 1; // Coefficiente di diffusione
+        const ctx = document.getElementById('heatEquationChart').getContext('2d');
+        const initialCondition = (x) => Math.exp(-x * x); // u_0(x)
+        const heatKernel = (x, t) => (1 / Math.sqrt(4 * Math.PI * t)) * Math.exp(-x * x / (4 * t));
 
-        // Funzione del nucleo del calore
-        function heatKernel(x, t) {
-            return (1 / (2 * alpha * Math.sqrt(Math.PI * t))) * Math.exp(-x * x / (4 * alpha * alpha * t));
-        }
+        let time = 0.1; // Tempo iniziale
+        let animationFrame;
+        let isAnimating = false;
 
-        // Curva iniziale u0(x)
-        function initialCondition(x) {
-            return Math.exp(-x * x); // Esempio: una gaussiana
-        }
-
-        // Convoluzione u(x, t) = integrazione numerica
-        function convolve(x, t) {
+        const computeSolution = (x, t) => {
             const dx = 0.1;
-            let result = 0;
+            let integral = 0;
             for (let xi = -10; xi <= 10; xi += dx) {
-                result += initialCondition(xi) * heatKernel(x - xi, t) * dx;
+                integral += heatKernel(x - xi, t) * initialCondition(xi) * dx;
             }
-            return result;
-        }
+            return integral;
+        };
 
-        // Generazione dei dati per il grafico
-        function generateData(t) {
-            const xValues = [];
-            const gValues = [];
-            const uValues = [];
-            for (let x = -10; x <= 10; x += 0.1) {
-                xValues.push(x);
-                gValues.push(heatKernel(x, t));
-                uValues.push(convolve(x, t));
-            }
-            return { xValues, gValues, uValues };
-        }
+        const generateData = (t) => {
+            const xValues = Array.from({ length: 201 }, (_, i) => -10 + i * 0.1);
+            const uValues = xValues.map(x => computeSolution(x, t));
+            return { xValues, uValues };
+        };
 
-        // Creazione del grafico
-        const ctx = document.getElementById('heatKernelChart').getContext('2d');
+        const initialData = generateData(time);
+
         const chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [],
-                datasets: [
-                    {
-                        label: 'Nucleo del Calore G(x, t)',
-                        data: [],
-                        borderColor: 'blue',
-                        fill: false,
-                    },
-                    {
-                        label: 'Curva Evoluta u(x, t)',
-                        data: [],
-                        borderColor: 'red',
-                        fill: false,
-                    },
-                ],
+                labels: initialData.xValues,
+                datasets: [{
+                    label: `u(x, t=${time.toFixed(1)})`,
+                    data: initialData.uValues,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                }],
             },
             options: {
                 responsive: true,
                 scales: {
                     x: {
                         type: 'linear',
-                        title: { display: true, text: 'x' },
+                        title: {
+                            display: true,
+                            text: 'x'
+                        }
                     },
                     y: {
-                        title: { display: true, text: 'Valore' },
-                    },
-                },
-            },
+                        title: {
+                            display: true,
+                            text: 'u(x, t)'
+                        }
+                    }
+                }
+            }
         });
 
-        // Funzione per aggiornare il grafico
-        function updateChart(t) {
-            const { xValues, gValues, uValues } = generateData(t);
-            chart.data.labels = xValues;
-            chart.data.datasets[0].data = gValues;
-            chart.data.datasets[1].data = uValues;
+        const updateChart = (t) => {
+            const newData = generateData(t);
+            chart.data.labels = newData.xValues;
+            chart.data.datasets[0].data = newData.uValues;
+            chart.data.datasets[0].label = `u(x, t=${t.toFixed(1)})`;
             chart.update();
-        }
+        };
 
-        // Slider interattivo
-        const timeSlider = document.getElementById('timeSlider');
-        const timeValue = document.getElementById('timeValue');
-        timeSlider.addEventListener('input', (e) => {
-            const t = parseFloat(e.target.value);
-            timeValue.textContent = t;
-            updateChart(t);
-        });
+        const updateTime = (newTime) => {
+            time = parseFloat(newTime);
+            document.getElementById('timeValue').textContent = newTime;
+            updateChart(time);
+        };
 
-        // Animazione automatica
-        let t = 0.1;
-        function animate() {
-            t += 0.1;
-            if (t > 5) t = 0.1;
-            timeSlider.value = t;
-            timeValue.textContent = t.toFixed(1);
-            updateChart(t);
-            requestAnimationFrame(animate);
-        }
+        const animate = () => {
+            if (time >= 5) time = 0.1; // Riparti da capo
+            time += 0.1;
+            document.getElementById('timeSlider').value = time;
+            document.getElementById('timeValue').textContent = time.toFixed(1);
+            updateChart(time);
+            animationFrame = requestAnimationFrame(animate);
+        };
 
-        // Avvia l'animazione e inizializza il grafico
-        updateChart(1); // Stato iniziale
-        animate();
+        const startAnimation = () => {
+            if (!isAnimating) {
+                isAnimating = true;
+                animate();
+            }
+        };
+
+        const pauseAnimation = () => {
+            isAnimating = false;
+            cancelAnimationFrame(animationFrame);
+        };
     </script>
 </body>
 </html>
+
 
