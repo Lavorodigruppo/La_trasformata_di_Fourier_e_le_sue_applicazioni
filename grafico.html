@@ -5,12 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizzazione Dinamica - Trasformata di Fourier</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    const updateInitialCondition = () => {
+    const input = document.getElementById('initialFunctionInput').value;
+
+    // Convert common math expressions to JavaScript syntax
+    const parsedInput = input
+        .replace(/e\^/g, 'Math.exp') // Replace e^ with Math.exp
+        .replace(/\^/g, '**'); // Replace ^ with ** for exponentiation
+
+    try {
+        initialConditionFunc = new Function('x', `return ${parsedInput}`);
+        updateChart(time);
+    } catch (error) {
+        alert('Errore nella funzione iniziale: ' + error.message);
+    }
+};
+
 </head>
 <body>
+    
     <h1>Visualizzazione della Soluzione dell'Equazione di Diffusione</h1>
     <p>
-        I grafici seguenti rappresentano l'evoluzione temporale della funzione \( u(x,t) \) calcolata come convoluzione del nucleo di calore \( G(x,t) 
-        e una distribuzione iniziale \( u_0(x) \). È possibile anche modificare la distribuzione iniziale e visualizzare separatamente \( G(x,t) \).
+        I grafici seguenti rappresentano l'evoluzione temporale della funzione \( u(x,t) \) calcolata come convoluzione del nucleo di calore \( G(x,t) \)
+        e una distribuzione iniziale \( u_0(x) \).Man mano che t aumenta, il nucleo si appiattisce, diffondendosi lungo l'asse x, mostrando la distribuzione uniforme del calore. Mentre per \(t \rightarrow 0 \) il nucleo 
+        \( G(x,t) \) è molto concentrato attorno all'origine, simile a un picco.
     </p>
 
     <div>
