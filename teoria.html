@@ -65,6 +65,56 @@
             text-align: center;
             margin: 20px 0;
         }
+        <style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        z-index: 1000;
+    }
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    .button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 0.9em;
+        margin: 0 3px;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
+    .close {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .close:hover {
+        background-color: darkred;
+    }
+</style>
+
     </style>
     <script>
     window.MathJax = {
@@ -77,6 +127,31 @@
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
+    <script>
+    document.querySelectorAll('.button').forEach(button => {
+        button.addEventListener('click', () => {
+            const modalId = button.getAttribute('data-modal-id');
+            document.getElementById(modalId).style.display = 'block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        });
+    });
+
+    document.querySelectorAll('.close').forEach(closeButton => {
+        closeButton.addEventListener('click', () => {
+            const modalId = closeButton.getAttribute('data-close-id');
+            document.getElementById(modalId).style.display = 'none';
+            document.getElementById('modalOverlay').style.display = 'none';
+        });
+    });
+
+    document.getElementById('modalOverlay').addEventListener('click', () => {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.style.display = 'none';
+        });
+        document.getElementById('modalOverlay').style.display = 'none';
+    });
+</script>
+
 </head>
 <body>
     <header>
@@ -120,7 +195,7 @@
             <h3 class="subheading"> 3° passo: si torna alla funzione di partenza con la formula di inversione</h3>
             <p>
                 Il secondo passo ci dice che \(\hat u(\omega,t)=e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\) ma noi cercavamo \(u(x,t)\). Il modo per passare dalla 
-                trasformata alla funzione di partenza è la trasformata inversa, grazie alla Formula d'inversione. Dunque applicando la trasformata inversa a entrambi i membri si ottiene \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))\) 
+                trasformata alla funzione di partenza è la trasformata inversa, grazie alla Formula d'inversione. Dunque applicando la trasformata inversa a entrambi i membri si ottiene <button class="button" id="btn1">=</button> \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))\) 
                 e per il calcolo del secondo membro si utilizzano le proprietà che legano la trasformata di Fourier e il prodotto di convoluzione: l'antitrasformata del prodotto di due funzioni è il prodotto di convoluzione delle antitrasformate delle due funzioni,
                 di conseguenza la soluzione all'equazione di diffusione sarà \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0)=G(x,t) * u(x,0)\) dove \( G(x,t)=\frac {1}{2\alpha \sqrt{\pi t}}e^{-\frac{x^2}{4t\alpha^2}} \) è ancora una funzione gaussiana, detta nucleo del calore, in quanto antitrasformata di una gaussiana.
             </p>
@@ -128,10 +203,23 @@
                 Da questo deduciamo il comportamento della funzione \(u(x,t)\) al crescere del tempo: la funzione \(G\) è concentrata nell'origine per tempi vicini a 0 e per tempi maggiori si appiattisce sempre di più, cioè aumenta l'ampiezza e diminuisce il valore della funzione in 0. 
                 Facendo quindi il prodotto di convoluzione tra questa funzione e la distribuzione iniziale, quella che all'inizio è una distribuzione irregolare con eventualmente numerosi picchi tende molto rapidamente a diventare uniforme e liscia.
             </p>
-            *
-            <div class="formula">
-        \( \hat{u}(\omega, t) = \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} \rightarrow u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, t) e^{i\omega x} d\omega \rightarrow u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega \rightarrow u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega \rightarrow u(x, t) = \frac{1}{2\pi} \int_{-\infty}^\infty u_0(\xi) \left( \int_{-\infty}^\infty e^{-\alpha^2 \omega^2 t} e^{i\omega (x-\xi)} d\omega \right) d\xi \rightarrow u(x, t) = \int_{-\infty}^\infty G(x-\xi, t) u_0(\xi) d\xi \rightarrow u(x, t) = \int_{-\infty}^\infty \frac{1}{\sqrt{4\pi \alpha^2 t}} e^{-\frac{(x-\xi)^2}{4\alpha^2 t}} u_0(\xi) d\xi \)
-    </div>
+            <!-- Sfondo scuro per il popup -->
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<!-- Contenuto della finestra a comparsa -->
+<div class="modal" id="modal1">
+    <h2>Dettaglio dell'equazione</h2>
+    <p>Questa è una spiegazione aggiuntiva per la prima uguaglianza.</p>
+    <button class="close" data-close-id="modal1">Chiudi</button>
+</div>
+
+<div class="modal" id="modal2">
+    <h2>Dettaglio dell'equazione</h2>
+    <p>Questa è una spiegazione aggiuntiva per la seconda uguaglianza.</p>
+    <button class="close" data-close-id="modal2">Chiudi</button>
+</div>
+
+
             <a href="index.html" class="back-button">Torna alla Home</a>
         </div>
     </main>
