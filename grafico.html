@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -8,30 +8,14 @@
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
-    const updateInitialCondition = () => {
-    const input = document.getElementById('initialFunctionInput').value;
-
-    // Convert common math expressions to JavaScript syntax
-    const parsedInput = input
-        .replace(/e\^/g, 'Math.exp') // Replace e^ with Math.exp
-        .replace(/\^/g, '**'); // Replace ^ with ** for exponentiation
-
-    try {
-        initialConditionFunc = new Function('x', `return ${parsedInput}`);
-        updateChart(time);
-    } catch (error) {
-        alert('Errore nella funzione iniziale: ' + error.message);
-    }
-};
-
 </head>
 <body>
     
     <h1>Visualizzazione della Soluzione dell'Equazione di Diffusione</h1>
     <p>
         I grafici seguenti rappresentano l'evoluzione temporale della funzione \( u(x,t) \) calcolata come convoluzione del nucleo di calore \( G(x,t) \)
-        e una distribuzione iniziale \( u_0(x) \).Man mano che t aumenta, il nucleo si appiattisce, diffondendosi lungo l'asse x, mostrando la distribuzione uniforme del calore. Mentre per \(t \rightarrow 0 \) il nucleo 
-        \( G(x,t) \) è molto concentrato attorno all'origine, simile a un picco.
+        e una distribuzione iniziale \( u_0(x) \). Man mano che \( t \) aumenta, il nucleo si appiattisce, diffondendosi lungo l'asse \( x \), mostrando la distribuzione uniforme del calore. 
+        Mentre per \( t \to 0 \) il nucleo \( G(x,t) \) è molto concentrato attorno all'origine, simile a un picco.
     </p>
 
     <div>
@@ -41,8 +25,9 @@
     </div>
 
     <div>
-        <h3>Grafico di \( u(x,t) \)</h3>
-        <canvas id="heatEquationChart" width="800" height="400"></canvas>
+        <label for="timeSlider">Seleziona il tempo \( t \):</label>
+        <input type="range" id="timeSlider" min="0.1" max="5" step="0.1" value="0.1" oninput="updateTime(this.value)">
+        <span id="timeValue">0.1</span>
     </div>
 
     <div>
@@ -51,9 +36,8 @@
     </div>
 
     <div>
-        <label for="timeSlider">Seleziona il tempo \( t \):</label>
-        <input type="range" id="timeSlider" min="0.1" max="5" step="0.1" value="0.1" oninput="updateTime(this.value)">
-        <span id="timeValue">0.1</span>
+        <h3>Grafico di \( u(x,t) \)</h3>
+        <canvas id="heatEquationChart" width="800" height="400"></canvas>
     </div>
 
     <div>
@@ -87,15 +71,28 @@
             return { xValues, uValues };
         };
 
-        const updateInitialCondition = () => {
-            const input = document.getElementById('initialFunctionInput').value;
-            try {
-                initialConditionFunc = new Function('x', `return ${input}`);
-                updateChart(time);
-            } catch (error) {
-                alert('Errore nella funzione iniziale: ' + error.message);
-            }
-        };
+        const updateInitialCondition = () => { 
+    const input = document.getElementById('initialFunctionInput').value;
+
+    // Converti notazioni matematiche comuni nella sintassi JavaScript
+    const parsedInput = input
+        .replace(/e\^/g, 'Math.exp')       // "e^" -> "Math.exp"
+        .replace(/log/g, 'Math.log')      // "log" -> "Math.log"
+        .replace(/ln/g, 'Math.log')       // "ln" -> "Math.log" (per logaritmo naturale)
+        .replace(/\^/g, '**')             // "^" -> "**" (elevamento a potenza)
+        .replace(/sin/g, 'Math.sin')      // "sin" -> "Math.sin"
+        .replace(/cos/g, 'Math.cos')      // "cos" -> "Math.cos"
+        .replace(/tan/g, 'Math.tan')      // "tan" -> "Math.tan"
+        .replace(/sqrt/g, 'Math.sqrt');   // "sqrt" -> "Math.sqrt"
+
+    try {
+        initialConditionFunc = new Function('x', `return ${parsedInput}`);
+        updateChart(time); // Aggiorna i grafici
+    } catch (error) {
+        alert('Errore nella funzione iniziale: ' + error.message);
+    }
+};
+
 
         const initialData = generateData(time, computeSolution);
 
