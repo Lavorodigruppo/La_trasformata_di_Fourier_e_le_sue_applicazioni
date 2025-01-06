@@ -28,6 +28,9 @@
         h1, h2, h3 {
             text-align: center;
         }
+        h1.subheading {
+            font-size: 1.5em; 
+        }
         .content {
             max-width: 800px;
             text-align: center;
@@ -104,6 +107,7 @@
         <h1>Progetto realizzato da Youness Faidari, Marta Manno e Emanuele Trucchi</h1>
     </header>
     <h1>Quiz Interattivo</h1>
+    <h2 class="subheading">Risposta multipla</h2>
     <div class="question">
     <p>Per la trasformata di Fourier della derivata vale:</p>
     <label>
@@ -319,10 +323,10 @@
     </label>
 </div>
 
-
+<h2 class="subheading">Vero o Falso</h2>
 
     <div class="question">
-    <p>Se \(f\) è una funzione in \(L^1(\mathbb{R})\) la sua trasformata di Fourier è sempre in \(L^1(\mathbb{R})\)</p>
+    <p>Se \(f\) è una funzione in \(L^1(\mathbb{R})\) la sua trasformata di Fourier è sempre in \(L^1(\mathbb{R})\)
     <label>
         <input type="radio" name="q13" id="q13-a1" value="vero" onclick="checkAnswer('q13', 'falso')">
         VERO
@@ -333,10 +337,11 @@
         FALSO
         <span id="q13-a2-feedback" class="feedback"></span>
     </label>
+    </p>
 </div>
 
 <div class="question">
-    <p>Nella risoluzione dell'equazione di diffusione il primo passo è applicare la trasformata di Fourier nella variabile \(x\)</p>
+    <p>Nella risoluzione dell'equazione di diffusione il primo passo è applicare la trasformata di Fourier nella variabile \(x\)
     <label>
         <input type="radio" name="q14" id="q14-a1" value="vero" onclick="checkAnswer('q14', 'vero')">
         VERO
@@ -347,10 +352,11 @@
         FALSO
         <span id="q14-a2-feedback" class="feedback"></span>
     </label>
+        </p>
 </div>
 
 <div class="question">
-    <p>Nei coefficienti complessi \(X_n\) dello sviluppo in serie di Fourier sono contenute le informazioni riguardo l'ampiezza e la fase delle sinusoidi</p>
+    <p>Nei coefficienti complessi \(X_n\) dello sviluppo in serie di Fourier sono contenute le informazioni riguardo l'ampiezza e la fase delle sinusoidi
     <label>
         <input type="radio" name="q15" id="q15-a1" value="vero" onclick="checkAnswer('q15', 'vero')">
         VERO
@@ -361,10 +367,11 @@
         FALSO
         <span id="q15-a2-feedback" class="feedback"></span>
     </label>
+        </p>
 </div>
 
 <div class="question">
-    <p>Lo spazio di Schwartz \(S(\mathbb{R})\) è definito come lo spazio delle funzioni continue a supporto compatto</p>
+    <p>Lo spazio di Schwartz \(S(\mathbb{R})\) è definito come lo spazio delle funzioni continue a supporto compatto
     <label>
         <input type="radio" name="q16" id="q16-a1" value="vero" onclick="checkAnswer('q16', 'falso')">
         VERO
@@ -375,6 +382,7 @@
         FALSO
         <span id="q16-a2-feedback" class="feedback"></span>
     </label>
+        </p>
 </div>
 
     </div>
