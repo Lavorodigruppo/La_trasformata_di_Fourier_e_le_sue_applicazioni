@@ -1,108 +1,129 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizzazione dinamica di G(x,t)</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script> <!-- Libreria Plotly -->
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        .graph-container {
-            max-width: 800px;
-            width: 100%;
-            margin-top: 20px;
-        }
-    </style>
+    <title>Visualizzazione Nucleo del Calore</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Visualizzazione di \( G(x,t) \): Nucleo del calore</h1>
-    </header>
-    <main>
-        <div class="graph-container">
-            <div id="graph"></div> <!-- Contenitore del grafico -->
-        </div>
-    </main>
+    <h2>Visualizzazione del Nucleo del Calore</h2>
+
+    <!-- Canvas per il grafico -->
+    <canvas id="heatKernelChart" width="800" height="400"></canvas>
+
+    <!-- Slider per il tempo -->
+    <div>
+        <label for="timeSlider">Tempo (t): </label>
+        <input type="range" id="timeSlider" min="0.1" max="5" step="0.1" value="1">
+        <span id="timeValue">1</span>
+    </div>
+
+    <!-- Script per il grafico e l'interattività -->
     <script>
-        // Funzione per calcolare G(x,t)
-        function G(x, t, alpha) {
-            if (t <= 0) return 0; // G(x,t) non è definito per t ≤ 0
-            const coeff = 1 / (2 * alpha * Math.sqrt(Math.PI * t));
-            const exp = Math.exp(-Math.pow(x, 2) / (4 * alpha * alpha * t));
-            return coeff * exp;
+        const alpha = 1; // Coefficiente di diffusione
+
+        // Funzione del nucleo del calore
+        function heatKernel(x, t) {
+            return (1 / (2 * alpha * Math.sqrt(Math.PI * t))) * Math.exp(-x * x / (4 * alpha * alpha * t));
         }
 
-        // Intervalli di x e t
-        const xValues = Array.from({ length: 200 }, (_, i) => -10 + i * 0.1); // da -10 a 10
-        const tValues = [0.1, 0.5, 1, 2, 5]; // Valori di t per i fotogrammi
-        const alpha = 1; // Parametro di diffusione
+        // Curva iniziale u0(x)
+        function initialCondition(x) {
+            return Math.exp(-x * x); // Esempio: una gaussiana
+        }
 
-        // Creazione dei frame per l'animazione
-        const frames = tValues.map(t => {
-            const yValues = xValues.map(x => G(x, t, alpha));
-            return {
-                name: `t=${t}`,
-                data: [{ x: xValues, y: yValues }]
-            };
-        });
-
-        // Configurazione del grafico iniziale
-        const data = [
-            {
-                x: xValues,
-                y: xValues.map(x => G(x, tValues[0], alpha)),
-                mode: 'lines',
-                name: `t=${tValues[0]}`,
-                line: { color: 'blue' }
+        // Convoluzione u(x, t) = integrazione numerica
+        function convolve(x, t) {
+            const dx = 0.1;
+            let result = 0;
+            for (let xi = -10; xi <= 10; xi += dx) {
+                result += initialCondition(xi) * heatKernel(x - xi, t) * dx;
             }
-        ];
+            return result;
+        }
 
-        const layout = {
-            title: 'Nucleo del calore \( G(x,t) \)',
-            xaxis: { title: 'x', range: [-10, 10] },
-            yaxis: { title: 'G(x,t)', range: [0, 0.5] },
-            updatemenus: [{
-                buttons: [
+        // Generazione dei dati per il grafico
+        function generateData(t) {
+            const xValues = [];
+            const gValues = [];
+            const uValues = [];
+            for (let x = -10; x <= 10; x += 0.1) {
+                xValues.push(x);
+                gValues.push(heatKernel(x, t));
+                uValues.push(convolve(x, t));
+            }
+            return { xValues, gValues, uValues };
+        }
+
+        // Creazione del grafico
+        const ctx = document.getElementById('heatKernelChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [
                     {
-                        args: [null, { frame: { duration: 500, redraw: true }, fromcurrent: true }],
-                        label: 'Avvia',
-                        method: 'animate'
+                        label: 'Nucleo del Calore G(x, t)',
+                        data: [],
+                        borderColor: 'blue',
+                        fill: false,
                     },
                     {
-                        args: [null, { frame: { duration: 0, redraw: true }, mode: 'immediate' }],
-                        label: 'Pausa',
-                        method: 'animate'
-                    }
+                        label: 'Curva Evoluta u(x, t)',
+                        data: [],
+                        borderColor: 'red',
+                        fill: false,
+                    },
                 ],
-                direction: 'left',
-                pad: { r: 10, t: 87 },
-                showactive: false,
-                type: 'buttons',
-                x: 0.1,
-                xanchor: 'right',
-                y: 0,
-                yanchor: 'top'
-            }]
-        };
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: { display: true, text: 'x' },
+                    },
+                    y: {
+                        title: { display: true, text: 'Valore' },
+                    },
+                },
+            },
+        });
 
-        // Configurazione dell'animazione
-        Plotly.newPlot('graph', data, layout)
-            .then(function () {
-                Plotly.addFrames('graph', frames.map(frame => ({
-                    name: frame.name,
-                    data: frame.data
-                })));
-            });
+        // Funzione per aggiornare il grafico
+        function updateChart(t) {
+            const { xValues, gValues, uValues } = generateData(t);
+            chart.data.labels = xValues;
+            chart.data.datasets[0].data = gValues;
+            chart.data.datasets[1].data = uValues;
+            chart.update();
+        }
+
+        // Slider interattivo
+        const timeSlider = document.getElementById('timeSlider');
+        const timeValue = document.getElementById('timeValue');
+        timeSlider.addEventListener('input', (e) => {
+            const t = parseFloat(e.target.value);
+            timeValue.textContent = t;
+            updateChart(t);
+        });
+
+        // Animazione automatica
+        let t = 0.1;
+        function animate() {
+            t += 0.1;
+            if (t > 5) t = 0.1;
+            timeSlider.value = t;
+            timeValue.textContent = t.toFixed(1);
+            updateChart(t);
+            requestAnimationFrame(animate);
+        }
+
+        // Avvia l'animazione e inizializza il grafico
+        updateChart(1); // Stato iniziale
+        animate();
     </script>
 </body>
 </html>
+
