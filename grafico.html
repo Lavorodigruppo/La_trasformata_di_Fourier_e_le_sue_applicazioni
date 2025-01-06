@@ -18,31 +18,34 @@
         Mentre per \( t \to 0 \) il nucleo \( G(x,t) \) è molto concentrato attorno all'origine, simile a un picco.
     </p>
 
-    <div>
-        <label for="initialFunctionInput">Imposta \( u_0(x) \):</label>
-        <input type="text" id="initialFunctionInput" value="Math.exp(-x * x)" />
-        <button onclick="updateInitialCondition()">Aggiorna</button>
-    </div>
-
-    <div>
-        <label for="timeSlider">Seleziona il tempo \( t \):</label>
-        <input type="range" id="timeSlider" min="0.1" max="5" step="0.1" value="0.1" oninput="updateTime(this.value)">
-        <span id="timeValue">0.1</span>
-    </div>
-
+    <!-- Grafico di G(x,t) -->
     <div>
         <h3>Grafico di \( G(x,t) \)</h3>
         <canvas id="heatKernelChart" width="800" height="400"></canvas>
     </div>
 
+    <!-- Controlli centrali: slider, input e tasti -->
+    <div style="text-align: center; margin: 20px;">
+        <label for="timeSlider">Seleziona il tempo \( t \):</label>
+        <input type="range" id="timeSlider" min="0.1" max="5" step="0.1" value="0.1" oninput="updateTime(this.value)">
+        <span id="timeValue">0.1</span>
+
+        <div style="margin-top: 10px;">
+            <label for="initialFunctionInput">Imposta \( u_0(x) \):</label>
+            <input type="text" id="initialFunctionInput" value="Math.exp(-x * x)" />
+            <button onclick="updateInitialCondition()">Aggiorna</button>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <button onclick="startAnimation()">Avvia</button>
+            <button onclick="pauseAnimation()">Pausa</button>
+        </div>
+    </div>
+
+    <!-- Grafico di u(x,t) -->
     <div>
         <h3>Grafico di \( u(x,t) \)</h3>
         <canvas id="heatEquationChart" width="800" height="400"></canvas>
-    </div>
-
-    <div>
-        <button onclick="startAnimation()">Avvia</button>
-        <button onclick="pauseAnimation()">Pausa</button>
     </div>
 
     <script>
@@ -72,27 +75,23 @@
         };
 
         const updateInitialCondition = () => { 
-    const input = document.getElementById('initialFunctionInput').value;
-
-    // Converti notazioni matematiche comuni nella sintassi JavaScript
-    const parsedInput = input
-        .replace(/e\^/g, 'Math.exp')       // "e^" -> "Math.exp"
-        .replace(/log/g, 'Math.log')      // "log" -> "Math.log"
-        .replace(/ln/g, 'Math.log')       // "ln" -> "Math.log" (per logaritmo naturale)
-        .replace(/\^/g, '**')             // "^" -> "**" (elevamento a potenza)
-        .replace(/sin/g, 'Math.sin')      // "sin" -> "Math.sin"
-        .replace(/cos/g, 'Math.cos')      // "cos" -> "Math.cos"
-        .replace(/tan/g, 'Math.tan')      // "tan" -> "Math.tan"
-        .replace(/sqrt/g, 'Math.sqrt');   // "sqrt" -> "Math.sqrt"
-
-    try {
-        initialConditionFunc = new Function('x', `return ${parsedInput}`);
-        updateChart(time); // Aggiorna i grafici
-    } catch (error) {
-        alert('Errore nella funzione iniziale: ' + error.message);
-    }
-};
-
+            const input = document.getElementById('initialFunctionInput').value;
+            const parsedInput = input
+                .replace(/e\^/g, 'Math.exp')
+                .replace(/log/g, 'Math.log')
+                .replace(/ln/g, 'Math.log')
+                .replace(/\^/g, '**')
+                .replace(/sin/g, 'Math.sin')
+                .replace(/cos/g, 'Math.cos')
+                .replace(/tan/g, 'Math.tan')
+                .replace(/sqrt/g, 'Math.sqrt');
+            try {
+                initialConditionFunc = new Function('x', `return ${parsedInput}`);
+                updateChart(time);
+            } catch (error) {
+                alert('Errore nella funzione iniziale: ' + error.message);
+            }
+        };
 
         const initialData = generateData(time, computeSolution);
 
@@ -119,6 +118,8 @@
                         }
                     },
                     y: {
+                        min: 0,
+                        max: 1,
                         title: {
                             display: true,
                             text: 'u(x, t)'
@@ -151,6 +152,8 @@
                         }
                     },
                     y: {
+                        min: 0,
+                        max: 1,
                         title: {
                             display: true,
                             text: 'G(x, t)'
