@@ -36,6 +36,18 @@
             max-width: 800px;
             text-align: center;
         }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .image-row img {
+            max-width: 45%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
         .buttons {
             margin-top: 20px;
         }
@@ -120,17 +132,22 @@
             </p>
             <h3 class="subheading">Elaborazione di segnali sonori</h3>
                  <p>
-                     Nei casi delle oscillazioni di un qualunque sistema meccanico, come l'oscillazione di una corda o di una membrana di uno strumento musicale, 
-                     l'analisi di Fourier viene effettuata facendo interagire l'onda in questione con sistemi fisici che captano il segnale e che sono in grado di attivare meccanismi capaci di selezionare e discriminare le varie componenti armoniche.
-                 </p>
-                 <p>
-                     Lo spettro di un segnale (e quindi la forma stessa del segnale) può essere modificato se sottoposto ad un’operazione di filtraggio. Un filtro è appunto un dispositivo che opera una trasformazione sulla struttura spettrale di un segnale, 
-                     trasmettendone una parte ed eliminandone le parti restanti. In altre parole un filtro ha la proprietà di agire, modificandola, sulla ampiezza delle componenti, lasciando inalterata la loro frequenza.
-                 </p>
-                 <p>
-                     Ad esempio per la rimozione del rumore, dopo aver scomposto il segnale nelle sue componenti, vengono scartate quelle della frequenza indesiderata e poi viene ricostruita l'onda sonora originale grazie alla trasformata inversa.
-                 Nel caso di una fastidiosa nota acuta in un suono, la trasfomata di Fourier mostrerà un picco di ampiezza in corrispondenza della frequenza specifica della nota. Basterà quindi diminuire l'ampiezza di questa frequenza per ottenere il suono desiderato.
-                 </p>
+                Nei casi delle oscillazioni di un qualunque sistema meccanico, come l'oscillazione di una corda o di una membrana di uno strumento musicale, 
+                l'analisi di Fourier viene effettuata facendo interagire l'onda in questione con sistemi fisici che captano il segnale e che sono in grado di attivare meccanismi capaci di selezionare e discriminare le varie componenti armoniche.
+            </p>
+            <div class="image-row">
+                <img src="https://tikz.net/files/fourier_series-011.png" alt="Grafico della serie di Fourier">
+                <img src="https://dibsmethodsmeetings.github.io/assets/images/2023-03-03-fourier-transforms/2023-03-03-fourier-transforms_12_0.png" alt="Grafico della trasformata di Fourier">
+            </div>
+            <p>
+                Lo spettro di un segnale (e quindi la forma stessa del segnale) può essere modificato se sottoposto ad un’operazione di filtraggio. Un filtro è appunto un dispositivo che opera una trasformazione sulla struttura spettrale di un segnale, 
+                trasmettendone una parte ed eliminandone le parti restanti. In altre parole un filtro ha la proprietà di agire, modificandola, sulla ampiezza delle componenti, lasciando inalterata la loro frequenza.
+            </p>
+            <p>
+                Ad esempio per la rimozione del rumore, dopo aver scomposto il segnale nelle sue componenti, vengono scartate quelle della frequenza indesiderata e poi viene ricostruita l'onda sonora originale grazie alla trasformata inversa.
+                Nel caso di una fastidiosa nota acuta in un suono, la trasfomata di Fourier mostrerà un picco di ampiezza in corrispondenza della frequenza specifica della nota. Basterà quindi diminuire l'ampiezza di questa frequenza per ottenere il suono desiderato.
+            </p>
+
 
             <a href="index.html" class="back-button">Torna alla Home</a>
         </div>
