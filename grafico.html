@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizzazione dinamica di G(x,t)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script> <!-- Libreria Plotly -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .graph-container {
+            max-width: 800px;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Visualizzazione di \( G(x,t) \): Nucleo del calore</h1>
+    </header>
+    <main>
+        <div class="graph-container">
+            <div id="graph"></div> <!-- Contenitore del grafico -->
+        </div>
+    </main>
+    <script>
+        // Funzione per calcolare G(x,t)
+        function G(x, t, alpha) {
+            if (t <= 0) return 0; // G(x,t) non è definito per t ≤ 0
+            const coeff = 1 / (2 * alpha * Math.sqrt(Math.PI * t));
+            const exp = Math.exp(-Math.pow(x, 2) / (4 * alpha * alpha * t));
+            return coeff * exp;
+        }
+
+        // Intervalli di x e t
+        const xValues = Array.from({ length: 200 }, (_, i) => -10 + i * 0.1); // da -10 a 10
+        const tValues = [0.1, 0.5, 1, 2, 5]; // Valori di t per i fotogrammi
+        const alpha = 1; // Parametro di diffusione
+
+        // Creazione dei frame per l'animazione
+        const frames = tValues.map(t => {
+            const yValues = xValues.map(x => G(x, t, alpha));
+            return {
+                name: `t=${t}`,
+                data: [{ x: xValues, y: yValues }]
+            };
+        });
+
+        // Configurazione del grafico iniziale
+        const data = [
+            {
+                x: xValues,
+                y: xValues.map(x => G(x, tValues[0], alpha)),
+                mode: 'lines',
+                name: `t=${tValues[0]}`,
+                line: { color: 'blue' }
+            }
+        ];
+
+        const layout = {
+            title: 'Nucleo del calore \( G(x,t) \)',
+            xaxis: { title: 'x', range: [-10, 10] },
+            yaxis: { title: 'G(x,t)', range: [0, 0.5] },
+            updatemenus: [{
+                buttons: [
+                    {
+                        args: [null, { frame: { duration: 500, redraw: true }, fromcurrent: true }],
+                        label: 'Avvia',
+                        method: 'animate'
+                    },
+                    {
+                        args: [null, { frame: { duration: 0, redraw: true }, mode: 'immediate' }],
+                        label: 'Pausa',
+                        method: 'animate'
+                    }
+                ],
+                direction: 'left',
+                pad: { r: 10, t: 87 },
+                showactive: false,
+                type: 'buttons',
+                x: 0.1,
+                xanchor: 'right',
+                y: 0,
+                yanchor: 'top'
+            }]
+        };
+
+        // Configurazione dell'animazione
+        Plotly.newPlot('graph', data, layout)
+            .then(function () {
+                Plotly.addFrames('graph', frames.map(frame => ({
+                    name: frame.name,
+                    data: frame.data
+                })));
+            });
+    </script>
+</body>
+</html>
