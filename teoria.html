@@ -159,9 +159,9 @@
             </p>
             <h3 class="subheading"> 1° passo: si applica a entrambi i membri la trasformata di Fourier in \(x\)</h3>
             <p>
-                Posta \(\hat u (\omega, t)=\mathcal F (u(x,t))\) si ha \[\mathcal F (\alpha^2 u_{xx})=\alpha^2 \mathcal F (u_{xx})=-\alpha^2 \omega^2 \hat u (\omega, t) \]
+                Posta \(\hat u (\omega, t)=\mathcal F (u(x,t))\) si ha \[\mathcal F (\alpha^2 u_{xx})=\alpha^2 \mathcal F (u_{xx}) \]<button class="button" onclick="openModal('popup4')">=</button> \[-\alpha^2 \omega^2 \hat u (\omega, t) \]
                 in cui la prima uguaglianza segue dalla linearità dell'integrale e la seconda dalla formula della trasformata di Fourier della derivata. 
-                Al primo membro si ha invece \[\mathcal F (u_t)= \int _{\mathbb R} \frac{\partial u}{\partial t} (x,t) e^{-ix \omega } dx =\frac{\partial }{\partial t} \int_{\mathbb R} u(x,t) e^{-ix \omega } dx =\frac{\partial \hat u}{\partial t} (\omega, t)\] 
+                Al primo membro si ha invece \[\mathcal F (u_t) \] <button class="button" onclick="openModal('popup5')">=</button> \[ \frac{\partial \hat u}{\partial t} (\omega, t)\] 
                 infatti dato che la funzione \(u\) è integrabile e maggiora in modulo la funzione integranda, si può passare la derivata fuori dall'integrale.
             </p>
             <h3 class="subheading"> 2° passo: si risolve l'equazione differenziale ordinaria</h3>
@@ -172,7 +172,7 @@
                 \[\begin{cases}
                 y^\prime (t)=-\alpha^2 \omega^2 y(t) \\
                 y(0)=\hat u (\omega, 0) \end{cases}\]
-                che si risolve con metodi elementari di separazione delle variabili e la soluzione è \(y(t)=e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\)
+                che si risolve con metodi elementari di separazione delle variabili e la soluzione è \(y(t) \) <button class="button" onclick="openModal('popup6')">=</button> \( e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\)
             </p>
             <h3 class="subheading"> 3° passo: si torna alla funzione di partenza con la formula di inversione</h3>
             <p>
@@ -206,6 +206,16 @@
             <p>\(\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0) = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \) </p>
             <p>\(=\frac{1}{2\pi} \int_{-\infty}^\infty u_0(\xi) \left( \int_{-\infty}^\infty e^{-\alpha^2 \omega^2 t} e^{i\omega (x-\xi)} d\omega \right) d\xi = \int_{-\infty}^\infty \frac{1}{\sqrt{4\pi \alpha^2 t}} e^{-\frac{(x-\xi)^2}{4\alpha^2 t}} u_0(\xi) d\xi = \int_{-\infty}^\infty G(x-\xi, t) u_0(\xi) d\xi = G(x,t) * u(x,0)\)</p>
         </div>
+        <div id="popup4" style="display: none;">
+           Testo da modificare 
+        </div>
+        <div id="popup5" style="display: none;">
+          \[\mathcal F (u_t)= \int _{\mathbb R} \frac{\partial u}{\partial t} (x,t) e^{-ix \omega } dx =\frac{\partial }{\partial t} \int_{\mathbb R} u(x,t) e^{-ix \omega } dx =\frac{\partial \hat u}{\partial t} (\omega, t)\]  
+        </div>
+        <div id="popup6" style="display: none;">
+            Testo da modificare
+        </div>
+            
         <p>Qui sotto trovi il grafico interattivo:</p>
     
     <!-- Aggiungi l'iframe qui -->
