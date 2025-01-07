@@ -15,7 +15,8 @@
     <p>
         I grafici seguenti rappresentano l'evoluzione temporale della funzione \( u(x,t) \) calcolata come convoluzione del nucleo di calore \( G(x,t) \)
         e una distribuzione iniziale \( u_0(x) \). Man mano che \( t \) aumenta, il nucleo si appiattisce, diffondendosi lungo l'asse \( x \), mostrando la distribuzione uniforme del calore. 
-        Mentre per \( t \to 0 \) il nucleo \( G(x,t) \) è molto concentrato attorno all'origine, simile a un picco.
+        Mentre per \( t \to 0 \) il nucleo \( G(x,t) \) è molto concentrato attorno all'origine, simile a un picco. In questo caso abbiamo scelto \( G(x,t)=\frac {1}{2\sqrt{\pi t}}e^{-\frac{x^2}{4t}} \) quindi
+        \( \alpha =1 \)
     </p>
 
     <!-- Grafico di G(x,t) -->
@@ -84,7 +85,8 @@
                 .replace(/sin/g, 'Math.sin')
                 .replace(/cos/g, 'Math.cos')
                 .replace(/tan/g, 'Math.tan')
-                .replace(/([a-zA-Z])/g, '($1)')
+                .replace(/pi/g, 'Math.PI')
+                .replace(/\b([a-zA-Z_]\w*)\b/g, '($1)')
                 .replace(/sqrt/g, 'Math.sqrt');
             try {
                 initialConditionFunc = new Function('x', `return ${parsedInput}`);
