@@ -80,16 +80,14 @@
             const parsedInput = input
                 .replace(/ln/g, 'Math.log')
                 .replace(/pi/g, 'Math.PI')
-                .replace(/e\^([^\s\+\-\*\/\)\(]+)/g, 'Math.exp($1)') // Esponenziale con argomento racchiuso in parentesi
-                .replace(/log/g, 'Math.log') 
-                .replace(/ln/g, 'Math.log')
+                .replace(/e\^/g, 'Math.exp')
+                .replace(/log/g, 'Math.log')
                 .replace(/\^/g, '**')        // Potenza
                 .replace(/sin/g, 'Math.sin')
                 .replace(/cos/g, 'Math.cos')
                 .replace(/tan/g, 'Math.tan')
                 .replace(/sqrt/g, 'Math.sqrt')
-                .replace(/([^\w])x([^\w]|$)/g, '$1(x)$2') // Racchiude automaticamente 'x' in parentesi
-                .replace(/^x([^\w]|$)/g, '(x)$1');
+                .replace(/\b([a-zA-Z_]\w*)\b/g, '($1)');
             try {
                 initialConditionFunc = new Function('x', `return ${parsedInput}`);
                 updateChart(time);
