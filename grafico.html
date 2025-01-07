@@ -84,7 +84,7 @@
                 .replace(/sin/g, 'Math.sin')
                 .replace(/cos/g, 'Math.cos')
                 .replace(/tan/g, 'Math.tan')
-                .replace(/x/g, '(x)')
+                .replace(/([a-zA-Z])/g, '($1)')
                 .replace(/sqrt/g, 'Math.sqrt');
             try {
                 initialConditionFunc = new Function('x', `return ${parsedInput}`);
