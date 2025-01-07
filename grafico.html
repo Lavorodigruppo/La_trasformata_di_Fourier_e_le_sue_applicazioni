@@ -32,7 +32,7 @@
 
         <div style="margin-top: 10px;">
             <label for="initialFunctionInput">Imposta \( u_0(x) \):</label>
-            <input type="text" id="initialFunctionInput" value="Math.exp(-x * x)" />
+            <input type="text" id="initialFunctionInput" value="e^(-(x^2))" />
             <button onclick="updateInitialCondition()">Aggiorna</button>
         </div>
 
@@ -84,6 +84,7 @@
                 .replace(/sin/g, 'Math.sin')
                 .replace(/cos/g, 'Math.cos')
                 .replace(/tan/g, 'Math.tan')
+                .replace(/x/g, '(x)')
                 .replace(/sqrt/g, 'Math.sqrt');
             try {
                 initialConditionFunc = new Function('x', `return ${parsedInput}`);
