@@ -32,6 +32,40 @@
             font-size: 1.5em; 
         }
         .content {
+            max-width: 800px;<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interattivo</title>
+    <style>
+         body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 0 20px;
+        }
+        header h1 {
+            font-size: 0.9em; 
+            text-align: center;
+            font-weight: normal; 
+            margin-bottom: 20px;
+            color: #555; 
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        h1.subheading {
+            font-size: 1.5em; 
+        }
+        .content {
             max-width: 800px;
             text-align: center;
         }
@@ -112,45 +146,45 @@
     <p>Per la trasformata di Fourier della derivata vale:</p>
     <label>
         <input type="radio" name="q1" id="q1-a1" value="tF(t)" onclick="checkAnswer('q1', 'itF(t)')">
-        \( F(f')(t)=tF(t) \)
+        \(\mathcal{F}(f')(t)=tF(t)\)
         <span id="q1-a1-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q1" id="q1-a2" value="-itF(t)" onclick="checkAnswer('q1', 'itF(t)')">
-        \( F(f')(t)=-itF(t) \)
+        \(\mathcal{F}(f')(t)=-itF(t)\) 
         <span id="q1-a2-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q1" id="q1-a3" value="itF(t)" onclick="checkAnswer('q1', 'itF(t)')">
-        \( F(f')(t)=itF(t) \) %giusta
+        \(\mathcal{F}(f')(t)=itF(t)\)
         <span id="q1-a3-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q1" id="q1-a4" value="F(t)/t" onclick="checkAnswer('q1', 'itF(t)')">
-        \( F(f')(t)=\frac{F(t)}{t} \)
+        \(\mathcal{F}(f')(t)=\frac{F(t)}{t}\)
         <span id="q1-a4-feedback" class="feedback"></span>
     </label>
 </div>
     <div class="question">
-    <p>L'operatore di trasformata di Fourier \(F\) è ben definito come:</p>
+    <p>L'operatore di trasformata di Fourier (\mathcal{F}\) è ben definito come:</p>
     <label>
         <input type="radio" name="q2" id="q2-a1" value="L^1toL^1" onclick="checkAnswer('q2', 'S_to_S')">
-        \( F : L^1(\mathbb{R}) \to L^1(\mathbb{R}) \)
+        \( \mathcal{F} : L^1(\mathbb{R}) \to L^1(\mathbb{R}) \)
         <span id="q2-a1-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q2" id="q2-a2" value="S_to_S" onclick="checkAnswer('q2', 'S_to_S')">
-        \( F : S(\mathbb{R}) \to S(\mathbb{R}) \) %giusta
+        \( \mathcal{F} : S(\mathbb{R}) \to S(\mathbb{R}) \) 
         <span id="q2-a2-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q2" id="q2-a3" value="C_infty_to_C_infty" onclick="checkAnswer('q2', 'S_to_S')">
-        \( F : C^\infty(\mathbb{R}) \to C^\infty(\mathbb{R}) \)
+        \( \mathcal{F} : C^\infty(\mathbb{R}) \to C^\infty(\mathbb{R}) \)
         <span id="q2-a3-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q2" id="q2-a4" value="L2_to_L2" onclick="checkAnswer('q2', 'S_to_S')">
-        \( F : L^2(\mathbb{R}) \to L^2(\mathbb{R}) \)
+        \( \mathcal{F} : L^2(\mathbb{R}) \to L^2(\mathbb{R}) \)
         <span id="q2-a4-feedback" class="feedback"></span>
     </label>
 </div>
