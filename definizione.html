@@ -59,6 +59,18 @@
             padding-left: 20px;
             text-align: center;
         }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .image-row img {
+            max-width: 45%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
         .buttons {
             margin-top: 20px;
         }
@@ -107,10 +119,16 @@
                 Inoltre poiché la funzione integranda \(f(x)e^{-i x t}\) è continua come funzione di \(t\) ed è maggiorata in modulo da \(|f(x)|\) che è integrabile, per il teorema di continuità degli integrali dipendenti 
                 da parametro si ha che \(F\) è continua.
             </p>
+            <div class="image-row">
+                <img src="https://www.cv.nrao.edu/~sransom/web/x368.png" alt="Grafico della serie di Fourier">
+            </div>
             <p>
                 In generale si definisce trasformata di Fourier anche l'operatore \(\mathcal F\) che a ogni funzione \(f\in L^1(\mathbb R)\) associa la sua trasformata di Fourier. 
                 Non è detto che la trasformata di una funzione in \(L^1(\mathbb R)\) sia ancora una funzione in \(L^1(\mathbb R)\), ad esempio se \(f(x)= \chi_{[-1/2,1/2]}\) la sua trasformata di Fourier è \(\frac{2\sin(t/2)}{t}\) che non è assolutamente integrabile.
             </p>
+            <div class="image-row">
+                <img src="https://www.cv.nrao.edu/~sransom/web/x366.png" alt="Grafico della serie di Fourier">
+            </div>
             <p>
                 Lo spazio su cui generalmente si studiano le trasformate di Fourier è infatti un altro: lo spazio di Schwartz, definito come \(S(\mathbb R)= \{f \in \mathcal C^{\infty} (\mathbb R) : \sup_x |x^af^{b}(x)|<+\infty \ \forall a,b\}\). 
                 Si può infatti dimostrare che è ben definito \(\mathcal F:S(\mathbb R) \to S(\mathbb R)\). In questo spazio valgono infatti le seguenti proprietà, fondamentali nelle applicazioni della trasformata di Fourier:
@@ -130,6 +148,9 @@
                 Un'ultima proprietà degna di nota è il legame tra trasformata di Fourier e prodotto di convoluzione. Il prodotto di convoluzione di due funzioni \(f\) e \(g\) è \[(f*g) (x)=\int_{\mathbb R}f(x-t)g(t) dt\] e vale
                 \(\mathcal F(f*g)=\mathcal F(f) \cdot \mathcal F(g)\), cioè la trasformata trasforma il prodotto di convoluzione nel prodotto "ordinario".
             </p>
+            <div class="image-row">
+                <img src="https://www.cv.nrao.edu/~sransom/web/x373.png" alt="Grafico della serie di Fourier">
+            </div>
             <p>
                 Segnaliamo infine che nei diversi ambiti in cui si applica la trasformata di Fourier si usano spesso diverse notazioni, ad esempio si può indicare la trasformata di una funzione \(f\), come \(F \text{o } \hat f\), e anche le lettere che indicano le variabili possono cambiare, 
                 ad esempio in Analisi Matematica si usano \(x, t\) rispettivamente per la funzione di partenza e la sua trasformata, mentre nell'analisi dei segnali si usano \(t, f\) per indicare tempo e frequenza. Inoltre a seconda dei casi possono cambiare le costanti nella formula: 
@@ -137,6 +158,7 @@
                 Nelle varie parti ci atterremo alle notazioni dell'ambito trattato.   
             </p>
                 </div>
+                
         </div>
             <a href="index.html" class="back-button">Torna alla Home</a>
         </div>
