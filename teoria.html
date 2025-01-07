@@ -177,12 +177,11 @@
             <h3 class="subheading"> 3° passo: si torna alla funzione di partenza con la formula di inversione</h3>
             <p>
                 Il secondo passo ci dice che \(\hat u(\omega,t)=e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)\) ma noi cercavamo \(u(x,t)\). Il modo per passare dalla 
-                trasformata alla funzione di partenza è la trasformata inversa, grazie alla Formula d'inversione. Dunque applicando la trasformata inversa a entrambi i membri si ottiene \(u(x,t)\) <button class="button" onclick="openModal('popup1')">=</button> \(\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))\) 
-                e per il calcolo del secondo membro si utilizzano le proprietà che legano la trasformata di Fourier e il prodotto di convoluzione: l'antitrasformata del prodotto di due funzioni è il prodotto di convoluzione delle antitrasformate delle due funzioni,
-                di conseguenza la soluzione all'equazione di diffusione sarà \(u(x,t)\)
+                trasformata alla funzione di partenza è la trasformata inversa, grazie alla Formula d'inversione. Dunque applicando la trasformata inversa a entrambi i membri si ottiene \(u(x,t)\) <button class="button" onclick="openModal('popup1')">=</button> \(\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (\omega, 0)\) 
+                chiamando infine \( G(x,t)=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) =\frac {1}{2\alpha \sqrt{\pi t}}e^{-\frac{x^2}{4t\alpha^2}} \), la soluzione all'equazione di diffusione sarà \(u(x,t)\)
                 <button class="button" onclick="openModal('popup2')">=</button>
-                \(\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0)\)<button class="button" onclick="openModal('popup3')">=</button>
-                \(G(x,t) * u(x,0)\) dove \( G(x,t)=\frac {1}{2\alpha \sqrt{\pi t}}e^{-\frac{x^2}{4t\alpha^2}} \) è ancora una funzione gaussiana, detta nucleo del calore, in quanto antitrasformata di una gaussiana.
+                <button class="button" onclick="openModal('popup3')">=</button>
+                \(G(x,t) * u(x,0)\) e osserviamo che \( G(x,t)\) è ancora una funzione gaussiana, detta nucleo del calore, in quanto antitrasformata di una gaussiana.
             </p>
             <p>
                 Da questo deduciamo il comportamento della funzione \(u(x,t)\) al crescere del tempo: la funzione \(G\) è concentrata nell'origine per tempi vicini a 0 e per tempi maggiori si appiattisce sempre di più, cioè aumenta l'ampiezza e diminuisce il valore della funzione in 0. 
@@ -197,7 +196,7 @@
             <button class="close" onclick="closeModal()">Chiudi</button>
         </div>
         <div id="popup1" style="display: none;">
-             \(u(x,t) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, t) e^{i\omega x} d\omega = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0))\)
+             \(u(x,t)=\mathcal F ^{-1}(e^{-\omega^2\alpha^2t} \cdot \hat u (\omega, t))=\mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (\omega, 0) \) usando la proprietà che la trasformata trasforma il prodotto di funzioni nel loro prodotto di convoluzione.
         </div>
         <div id="popup2" style="display: none;">
             \(u(x,t) = \mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}\hat u (\omega, 0)) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{u}(\omega, 0) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \frac{1}{2\pi} \int_{-\infty}^\infty \left( \int_{-\infty}^\infty u_0(\xi) e^{-i\omega \xi} d\xi \right) e^{-\alpha^2 \omega^2 t} e^{i\omega x} d\omega = \mathcal F ^{-1}(e^{-\omega^2 \alpha ^2 t}) * u (x, 0)\)
