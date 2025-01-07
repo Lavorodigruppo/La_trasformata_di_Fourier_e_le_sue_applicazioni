@@ -109,25 +109,25 @@
     <h1>Quiz Interattivo</h1>
     <h2 class="subheading">Risposta multipla</h2>
     <div class="question">
-    <p>Per la trasformata di Fourier della derivata vale:</p>
+    <p>La trasformata di Fourier della derivata seconda vale:</p>
     <label>
         <input type="radio" name="q1" id="q1-a1" value="tF(t)" onclick="checkAnswer('q1', 'itF(t)')">
-        \(\mathcal{F}(f')(t)=tF(t)\)
+        \(\mathcal{F}(f'')(t)=t^2F(t)\)
         <span id="q1-a1-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q1" id="q1-a2" value="-itF(t)" onclick="checkAnswer('q1', 'itF(t)')">
-        \(\mathcal{F}(f')(t)=-itF(t)\) 
+        \(\mathcal{F}(f'')(t)=-itF(t)\) 
         <span id="q1-a2-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q1" id="q1-a3" value="itF(t)" onclick="checkAnswer('q1', 'itF(t)')">
-        \(\mathcal{F}(f')(t)=itF(t)\)
+        \(\mathcal{F}(f'')(t)=-t^2F(t)\)
         <span id="q1-a3-feedback" class="feedback"></span>
     </label><br>
     <label>
         <input type="radio" name="q1" id="q1-a4" value="F(t)/t" onclick="checkAnswer('q1', 'itF(t)')">
-        \(\mathcal{F}(f')(t)=\frac{F(t)}{t}\)
+        \(\mathcal{F}(f'')(t)=\frac{F(t)}{t^2}\)
         <span id="q1-a4-feedback" class="feedback"></span>
     </label>
 </div>
